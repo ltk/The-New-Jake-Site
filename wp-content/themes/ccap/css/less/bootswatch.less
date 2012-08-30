@@ -1,0 +1,673 @@
+/* =============================================================================
+	General
+	========================================================================== */
+	.span7 {
+		width: 590px;
+	}
+	.span5 {
+		width: 330px;
+	}
+	.horizontal-list > * { display: block; float: left; }
+
+	// Clearfix
+	.group:before,
+	.group:after {
+		content: "";
+		display: table;
+	}
+	.group:after { clear: both; }
+	.group { zoom: 1; } /* For IE 6/7 (trigger hasLayout) */
+
+/* =============================================================================
+	Buttons
+	========================================================================== */
+	.btn {
+		color: @btnText;
+		text-shadow: 0 1px 1px @btnTextShadow;
+	}
+
+	// Hover state
+	.btn:hover {
+		color: @btnText;
+		background-color: @btnHover;
+		*background-color: @btnHoverIE; /* Buttons in IE7 don't get borders, so darken on hover */
+	}
+
+/* =============================================================================
+	Base
+	========================================================================== */
+	
+	body {
+		border-top: 5px solid @blueDark;
+		background: url(/img/sky_bg.jpg);
+		background-position: center top; 
+		background-repeat: no-repeat;
+	}
+
+	#content li { list-style: none; }
+	
+	#content li:before {
+		content: "\2219";
+		color: #52A5DB;
+		font-size: 3em;
+		position: absolute;
+		margin-left: -.5em;
+	}
+
+	#sidebar li:before {
+		content: "";
+	}
+
+
+/* =============================================================================
+	Header
+	========================================================================== */
+	#brand {
+		background: url(/img/ccap_logo.png);
+		background-repeat: no-repeat;
+		width: 245px;
+		height: 77px;
+		text-indent: -10000px;
+		display: block;
+		margin-top: 35px;
+		margin-bottom: 35px;
+	}
+
+	.navbar .nav > li > a {
+		padding: 5px 20px;
+	}
+
+	#action-nav {
+		margin-top: 20px;
+
+		li {
+			display: block;
+			float: left;
+			margin-left: 10px;
+			padding-left: 10px;
+			border-left: 1px solid @blueDark;
+			text-transform: uppercase;
+
+			&:first-child {
+				margin-left: 0;
+				padding-left: 0;
+				border: none;
+			}
+
+			a {
+				color:@blueDark;
+				font-size: 0.8em;
+				line-height: 0.9em;
+
+				&:hover {
+					background: none;
+				}
+			}
+		}
+	}
+
+	#site-search {
+		margin-top: 75px;
+
+		input, button {
+			font-size: 0.8em;
+		}
+	}
+
+	#newsletter-signup {
+		margin: 0 0 0 25px;
+
+		input, button, label {
+			font-size: 0.8em;
+			margin: 0;
+		}
+	}
+
+	#content {
+		margin-top: 25px;
+	}
+
+	/* Fixed Topbar Navigation */
+	body.top-navbar {  }
+	body.admin-bar .navbar-fixed-top { top: 28px; }
+
+/*
+	#slides {
+		margin-top: 25px;
+		height: 294px;
+		background: url(/img/slide_bg.jpg);
+		border-radius: @boxRadius;
+		padding: 50px;
+		box-sizing: border-box;
+	}
+	#slides .slide {
+	  position: relative;
+	}
+	#slides .slide img.circle {
+	  border-radius: 180px;
+	  box-shadow: 1px 1px 3px #grayLight;
+	  position: absolute;
+	  right: -20px;
+	  top: -80px;
+	}
+*/
+/* =============================================================================
+	Breadcrumbs
+	========================================================================== */
+	.breadcrumbs {
+		font-weight: bold;
+		color: @gray;
+		font-size: 0.9em;
+		text-transform: uppercase;
+
+		a {
+			color: @gray;
+			font-weight: normal;
+		}
+	}
+
+/* =============================================================================
+	Social/Newsletter Signup
+	========================================================================== */
+	
+	.connect {
+		padding: 0 0 20px 0;
+		color: @blueLight;
+
+		h4 {
+			line-height: 2.6em;
+		}
+	}
+
+/* =============================================================================
+	Tabbed Content Widget
+	========================================================================== */
+	
+	div.tab-content {
+
+		h2 {
+			font-size: 1.2em;
+			color: @blueDark;
+			line-height: 1.6em;
+			margin-bottom: 15px;
+		}
+
+		img {
+			padding: 0 0 15px 15px;
+		}
+	}
+
+	#where-we-work {
+		#gradient > .vertical( rgba( 255,255,255,0 ), rgba( 233, 241, 247, 1 ) );
+		#translucent > .background( @white,0 );
+
+		position: relative;
+		padding: 25px;
+		.border-radius( 5px );
+
+		img {
+			display: block;
+			margin: 0 auto;
+		}
+
+		h3 {
+			color: @blueLight;
+			text-transform: uppercase;
+		}
+
+		a[class*='map-dot-'] {
+			display: block;
+			position: absolute;
+			.border-radius( 8px );
+			height: 16px;
+			width: 16px;
+			.box-shadow( 1px 1px 3px 1px rgba( 0,0,0,0.3 ) );
+			background: @blueLight;
+
+			&:hover {
+				background: @white;
+			}
+		}
+
+		a.map-dot-1{
+			top: 85px;
+			left: 56px;
+		}
+
+		a.map-dot-2{
+			top: 120px;
+			left: 98px;
+		}
+
+		a.map-dot-3{
+			top: 57px;
+			left: 126px;
+		}
+
+		a.map-dot-4{
+			top: 135px;
+			left: 158px;
+		}
+
+		a.map-dot-5{
+			top: 95px;
+			left: 223px;
+		}
+
+		a.map-dot-6{
+			top: 76px;
+			left: 292px;
+		}
+
+	}
+
+	#recent-publications {
+		position: relative;
+		margin: 35px 0 25px;
+		
+		#gradient > .vertical( rgba( 255,255,255,0 ), rgba( 233, 241, 247, 1 ) );
+		#translucent > .background( @white,0 );
+		
+		h6 {
+			display: block;
+			width: 100%;
+			border-top: 1px solid @grayLighter;
+			border-bottom: 1px solid @grayLighter;
+			color: @grayLight;
+			text-transform: uppercase;
+			text-align: center;
+			margin-bottom: 15px;
+		}
+
+		.widget {
+			.box-sizing( border-box );
+			padding: 20px;
+		} 
+	}
+
+/* =============================================================================
+	Footer
+	========================================================================== */
+	
+	#footer-bar {
+		background: @blueMedium;
+		color: @blueLightest;
+	}
+
+	#footer {
+		background: @blueDark;
+		color: @blueLight;
+		padding-top: 30px;
+		padding-bottom: 30px;
+
+		p {
+			font-size: 0.8em;
+			line-height: 1.3em;
+		}
+	}
+
+	#utility-nav {
+		
+		li {
+			float: left;
+			margin-left: 25px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			a {
+				color: @white;
+				text-transform: uppercase;
+				font-weight: bold;
+				font-size: 0.9em;
+
+				&:hover {
+					background: none;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	#sitemap-nav {
+		
+		li {
+			float: left;
+			margin-left: 25px;
+
+			&:first-child{
+				margin-left:0;
+			}
+
+			a {
+				text-transform: uppercase;
+				font-weight: bold;
+
+				b.caret {
+					display: none;
+				}
+
+				&:hover {
+					background: none;
+					text-decoration: underline;
+				}
+			}
+
+			ul.dropdown-menu {
+				display: block;
+				position: relative;
+				padding: 0;
+				margin: 0;
+				background: none;
+				border: none;
+				min-width: 0;
+				.border-radius( 0 );
+				.box-shadow( none );
+
+				li {
+					float: none;
+					margin-left: 0;
+					margin-bottom: 3px;
+
+					a {
+						color: @white;
+						font-size: 0.8em;
+						text-transform: none;
+						padding: 0;
+						font-weight: normal;
+					}
+				}
+			}
+		}
+	}
+
+/* =============================================================================
+	Daughter Pages
+	========================================================================== */
+	
+	h4[title]:before {
+		content: attr( title );
+		background: white;
+		z-index: 2;
+		position: absolute;
+		padding-right: 15px;
+	}
+
+	h4[title]:after {
+		content: "";
+		display: block;
+		position: relative;
+		top: -.8em;
+		border-bottom: 1px solid @blueLightest;
+	}
+
+	#content.page {
+		margin-top: 10px;
+		background: @white;
+		.box-sizing( border-box );
+		padding: 45px 55px;
+
+		h1 {
+			color: @blueDark;
+			text-transform: uppercase;
+			line-height: 1.6em;
+		}
+
+		h2 {
+			font-family: @serifFontFamily;
+			color: @blueLightest;
+			line-height: 1.5em;
+			font-size: 1.35em;
+			margin: 15px 0;
+		}
+
+		h3 {
+			color: @blueLight;
+		}
+		#sidebar h2 {
+			font-family: @sansFontFamily;
+		}
+
+		blockquote {
+			margin: 0;
+			display: block;
+			border: none;
+			overflow: hidden;
+			#gradient > .vertical( @white, lighten( @blueLightest, 20% ) );
+			.border-radius( @boxRadius );
+			.box-shadow( 1px 1px 3px 1px rgba( 0,0,0,0.3 ) );
+			padding: 20px 20px;
+
+			p {
+				color: @blueDark;
+			}
+		}
+
+		.alert {
+			overflow: hidden;
+		}
+
+	}
+
+	#sidebar {
+		float: right;
+		#gradient > .vertical(#c8c8c8, @white);
+		position: relative;
+		top: -70px;
+		right: -20px;
+		width: 258px;
+		.box-shadow( 1px 1px 3px 1px rgba(0,0,0,0.3) );
+		.border-radius( @boxRadius @boxRadius 0 0 );
+		margin-bottom: -60px;
+
+		h2.section-title {
+			padding: 35px 25px 20px;
+			margin: 0;
+			text-transform: uppercase;
+			color: @white;
+			line-height: 1em;
+			border-bottom: 1px solid @white;
+		}
+
+		ul.sidebar-nav {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+
+			li {
+
+				a {
+					display: block;
+					padding: 16px 25px;
+					color: @gray;
+					text-transform: uppercase;
+					border-bottom: 1px solid @white;
+
+					&:hover {
+						text-decoration: none;
+						background: rgba( 255,255,255,0.3 );
+					}
+				}
+				
+
+				&.active {
+					a {
+						color: @blueLight;
+						font-weight: bold;
+						background: rgba( 255,255,255,0.4 );
+
+						&:hover {
+							background:rgba( 255,255,255,0.4 );
+						}
+					}
+				}
+			}
+		}
+
+		img.program-thumbnail {
+			width: 100%;
+			height: auto;
+		}
+
+		ul.sidebar-browse-by {
+
+			li, li.active {
+				padding: 20px 25px;
+				background: none;
+				color: @gray;
+
+				&:hover a {
+					background: none;
+				}
+
+				ul {
+					margin-top: 5px;
+					margin-left: 20px;
+
+					li {
+						padding: 5px 0;
+
+						&:hover a {
+							background: none;
+							color: @blueDark;
+
+							
+						}
+					}
+				}
+
+				a {
+					border: none;
+					padding: 0;
+				}
+			}
+		}
+
+		.sidebar-content-box-wrapper {
+			width: 100%;
+			background: white;
+			background: url( /img/slide_bg.jpg );
+			padding: 10px 0 5px;
+
+			.sidebar-content-box {
+				background: @white;
+
+				text-align: center;
+			}
+		}
+
+		.related-content {
+			.box-sizing(border-box);
+			width: 100%;
+			padding: 20px 8px 10px;
+			background: white;
+
+			.related-documents, .related-links, .related-topics, .related-news {
+				h4 {
+					background: url( /img/slide_bg.jpg );
+					.border-radius(5px);
+					padding: 5px 10px;
+					color: @white;
+					text-transform: uppercase;
+				}
+
+				ul {
+					list-style: none;
+					padding: 5px 0 15px 14px;
+
+					li {
+						font-size: 0.8em;
+						padding: 5px 0;
+					}
+				}
+			}
+
+			.related-topics ul li a {
+				text-transform: capitalize;
+			}
+		}
+	}
+
+/* =============================================================================
+	Staff Page
+	========================================================================== */
+
+	.staff.row {
+		margin-left: 0;
+		overflow: hidden;
+		margin-top: 25px
+	}
+
+	.staff.row h4 { 
+		color: @blueLightest;
+		text-transform: uppercase;
+		font-size: 15px;
+		margin-bottom: 25px;
+	}
+
+	.staff-member {
+		position: relative;
+		min-height: 111px; // .staff-thumbnail height + border + 5? Not sure where that 5 is coming from
+		width: 250px;
+		margin: 0 25px 25px 0;
+		display: inline-block;
+		vertical-align: top;
+
+		&.no-image .staff-info { position: absolute; bottom: 0; max-width: none; }
+	}
+
+	.staff-thumbnail-link { display: inline-block; vertical-align: text-bottom; margin-right: 10px; }
+	.staff-thumbnail { border: 3px solid #dbdbdb; }
+
+	.staff-info {
+		display: inline-block;
+		max-width: 134px;
+
+		a, span { display: block; }
+
+	}
+
+/* =============================================================================
+	Featured Work Page
+	========================================================================== */
+	#content ul.featured-work {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			overflow: hidden;
+			border-top: 1px solid @grayMediumLight;
+			padding: 25px 0;
+
+			&:first-child {
+				border: none;
+			}
+
+			h2, h2 a {
+				color: @blueLight;
+				font-size: 1.2em;
+			}
+
+			h2 {
+				font-size: 1.3em;
+				margin: 0 0 20px 0;
+			}
+
+			h2 a:hover {
+				text-decoration: none;
+				color: @blueDark;
+			}
+
+			img {
+				float: left;
+				border: 3px solid @grayMediumLight;
+				margin-right: 30px;
+			}
+
+			a:hover img {
+				border-color: @blueDark;
+			}
+		}
+	}
