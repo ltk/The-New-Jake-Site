@@ -1,0 +1,190 @@
+/* =============================================================================
+   Base
+   ========================================================================== */
+/* CCAP Dark Blue: #1b4164 */
+body {
+  border-top:5px solid #1b4164;
+  background: url(/img/sky_bg.jpg);
+  background-position:center top; 
+  background-repeat:no-repeat;
+  font-family: 'Questrial', sans-serif;
+
+}
+
+
+
+/* =============================================================================
+   Header
+   ========================================================================== */
+#logo {
+  background: url(/img/ccap_logo.png);
+  background-repeat:no-repeat;
+  width:245px;
+  height:77px;
+  text-indent:-10000px;
+  display:block;
+  margin-top:35px;
+  margin-bottom:35px;
+}
+
+#banner { 
+  position:relative;
+}
+#banner .navbar-inner {
+  min-height:0;
+  border-radius:8px;
+  margin-left:-10px;
+  margin-right:-10px;
+
+  background-image: linear-gradient(top, rgb(27,65,100) 0%, rgb(22,54,84) 100%);
+  background-image: -o-linear-gradient(top, rgb(27,65,100) 0%, rgb(22,54,84) 100%);
+  background-image: -moz-linear-gradient(top, rgb(27,65,100) 0%, rgb(22,54,84) 100%);
+  background-image: -webkit-linear-gradient(top, rgb(27,65,100) 0%, rgb(22,54,84) 100%);
+  background-image: -ms-linear-gradient(top, rgb(27,65,100) 0%, rgb(22,54,84) 100%);
+
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, rgb(27,65,100)),
+    color-stop(1, rgb(22,54,84))
+  );
+
+}
+#banner .navbar-inner li a{
+  border-radius:5px;
+  color:#fff;
+  text-transform:uppercase;
+  font-size:15px;
+}
+#banner .navbar-inner li.active a{
+  background:none;
+}
+
+.navbar .nav > li > a {
+  padding:5px 20px;
+}
+#menu-top-navigation {
+  margin-top:20px;
+}
+#menu-top-navigation li {
+  display: block;
+  float: left;
+  margin-left:10px;
+  padding-left:10px;
+  border-left:1px solid #1b4164;
+  text-transform:uppercase;
+}
+#menu-top-navigation li:first-child {
+  margin-left:0;
+  padding-left:0;
+  border:none;
+}
+#menu-top-navigation li a {
+  color:#1b4164;
+}
+#menu-top-navigation li a:hover {
+  background:none;
+}
+#searchform {
+  margin-top:75px;
+}
+#content {
+  margin-top:25px;
+}
+/* Fixed Topbar Navigation */
+body.top-navbar {  }
+body.admin-bar .navbar-fixed-top { top: 28px; }
+
+#slides {
+  margin-top:25px;
+  height:294px;
+  background:url(/img/slide_bg.jpg);
+  border-radius:5px;
+  padding:50px;
+  box-sizing: border-box;
+}
+#slides .slide {
+  position:relative;
+}
+#slides .slide img.circle {
+  border-radius:180px;
+  box-shadow: 1px 1px 3px #666;
+  position:absolute;
+  right:-20px;
+  top:-80px;
+}
+#slides .slide h1, #slides .slide p {
+  max-width:510px;
+}
+#slides .slide h1 {
+  font-size:2.7em;
+  line-height:1.5em;
+  color:#fff;
+  margin-bottom:15px;
+}
+#slides .slide p {
+  color:#1b4164;
+  font-size:1.2em;
+  line-height: 1.4em;
+}
+
+/* =============================================================================
+   Content
+   ========================================================================== */
+
+#content { }
+
+
+
+/* =============================================================================
+   Primary Content
+   ========================================================================== */
+
+#main { }
+
+
+
+/* =============================================================================
+   Sidebar
+   ========================================================================== */
+
+#sidebar { }
+
+
+
+/* =============================================================================
+   Posts
+   ========================================================================== */
+
+.hentry header { }
+.hentry time { }
+.hentry p.byline { }
+.hentry .entry-content { }
+.hentry footer { }
+
+
+
+/* =============================================================================
+   Footer
+   ========================================================================== */
+
+#content-info { }
+
+
+
+/* =============================================================================
+   WordPress Generated Classes
+   See: http://codex.wordpress.org/CSS#WordPress_Generated_Classes
+   ========================================================================== */
+
+.aligncenter { display: block; margin: 0 auto; }
+.alignleft { float: left; }
+.alignright { float: right; }
+figure.alignnone { margin-left: 0; margin-right: 0; }
+
+
+
+/* =============================================================================
+   Media Queries
+   ========================================================================== */

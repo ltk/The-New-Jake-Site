@@ -1,0 +1,267 @@
+/* =============================================================================
+	Variables
+	========================================================================== */
+
+	@SM-gap-size: 5px;	//	Sub menu gap size.
+
+/* =============================================================================
+	Reset/Override Styles
+	========================================================================== */
+
+	#megaMenu ul li.ss-nav-menu-reg li.megaReg-with-sub > a:after,
+	#megaMenu ul li.mega-with-sub > a:after,
+	#megaMenu ul li.ss-nav-menu-mega > a:after,
+	#megaMenu ul li.ss-nav-menu-reg li.megaReg-with-sub > span.um-anchoremulator:after,
+	#megaMenu ul li.mega-with-sub > span.um-anchoremulator:after,
+	#megaMenu ul li.ss-nav-menu-mega > span.um-anchoremulator:after
+	{
+		content: none;
+	}
+
+	ul.megaMenu li.ss-nav-menu-mega ul.sub-menu li.ss-nav-menu-item-depth-1.fullWidthRow,
+	ul.megaMenu li.ss-nav-menu-mega ul.sub-menu li.ss-nav-menu-item-depth-1.ss-sidebar {
+		width: @gridRowWidth;
+	}
+
+/* =============================================================================
+	General Styles
+	========================================================================== */
+
+	#primary-nav { margin: 0 -20px 25px; }
+
+	#primary-nav .navbar-inner {
+		margin: 0;
+		padding: 0;
+		position: relative;
+		min-height: 25px;
+		.border-radius( @boxRadius );
+		#gradient > .vertical( @blueNavGradientTop, @blueNavGradientBottom );
+	}
+
+	#primary-nav .navbar-inner li.active,
+	#primary-nav .navbar-inner li.current-page-ancestor,
+	 {
+		// #gradient > .vertical( lighten( @blueNavGradientTop, 20% ), lighten( @blueNavGradientBottom, 20% ) );
+		background: @blueLight;
+		.box-shadow( inset 0px 0px 3px 1px rgba( 0, 0, 0, .25 ) );
+		border: 1px solid rgba( 0, 0, 0, .25 );
+		border-bottom: none;
+	}
+
+
+/* =============================================================================
+	Hardcoded List Items Widths
+	========================================================================== */
+
+	#menu-item-7  { 
+		width: 148px;
+		.border-radius( 3px 0 0 3px );	//	Values are smaller than normal to cover bleed
+		&.mega-with-sub {
+			&:hover { .border-radius( 0 ); }
+		}
+	 }
+	#menu-item-23 { width: 135px; }
+	#menu-item-22 { width: 118px; }
+	#menu-item-21 { width: 164px; }
+	#menu-item-20 { width: 110px; }
+	#menu-item-28 { width: 96px; }
+	#menu-item-19 { 
+		width: 195px;
+		.border-radius( 0 3px 3px 0 );	//	Values are smaller than normal to cover bleed
+		&.mega-with-sub {
+			&:hover { .border-radius( 0 ); }
+		} 
+	}
+
+
+/* =============================================================================
+	Megamenu Namespace -- Required to override styles
+	========================================================================== */
+	#megaMenu {
+
+		//Primary Nav list items
+		ul li.ss-nav-menu-mega {
+			border: 1px solid transparent;
+			border-bottom: none;
+			float: left;
+			text-align: center;
+
+
+			//	Primary Nav link ( Not Most Specific )
+			& > a {
+				color: @white;
+				text-transform: uppercase;
+				font-size: 15px;
+				padding: 5px 24px 5px;
+				padding: 5px 0;
+
+			}
+
+			&:first-child {
+				.border-radius( 5px 0 0 5px );
+
+				&:hover { .border-radius( 0 ); }
+
+				// & > a { padding-left: 25px; } //Fix. Sad, shameful fix, to make the menu fit the whole bar.
+			}
+
+			&:hover {
+				background: @white;
+
+				& > a {
+					color: @blueDark;
+					background: @white;
+				}
+
+			}
+
+			&.mega-with-sub {
+				&:hover {
+					border: 1px solid @blueLight;
+					border-bottom: none;
+					.box-shadow( 1px 1px 4px 1px rgba( 0,0,0,0.5 ) );
+
+					& > a {
+						position: relative;
+						z-index: 502; // 2 More than .submenu.
+
+						& > :before {
+							content: "";
+							height: 1px;
+							width: 100%;
+							position: absolute;
+							z-index: -2;
+							left: -1px;
+							bottom: -2px;
+
+							.box-shadow( 1px 1px 4px 1px rgba( 0, 0, 0, .5 ) );
+
+						}
+
+						& > :after {
+							content: "";
+							height: ( @SM-gap-size + 2px ) ;
+							width: 100%;
+							position: absolute;
+							z-index: -1;
+							left: -1px; // So the borders line up
+							bottom: -( @SM-gap-size + 1px );
+
+							background: @white;
+							border-left: 1px solid @blueLight;
+							border-right: 1px solid @blueLight;
+						}
+					}
+				}
+			}
+		}
+
+		//	Dropdown container
+		&.megaMenuHorizontal ul.megaMenu > li.menu-item > ul.sub-menu.sub-menu-1 {
+			margin-top: @SM-gap-size;
+			background: @white;
+			border: 1px solid @blueLight;
+			.border-radius( 0 0 3px 3px );
+			.box-shadow( 1px 1px 4px 1px rgba( 0, 0, 0, .5 ) );
+			.box-sizing( border-box );
+
+			left: 0;
+
+			& .ss-nav-menu-item-depth-1 {
+				margin: 0;
+				padding: 16px 0;
+	
+				&.watermark {
+					background: url( /img/dd-watermark.png ) bottom left no-repeat;
+				}
+			}
+
+		}
+
+		& .wpmega-nonlink ul li.widget {
+			margin-bottom: 0;
+		}
+
+
+
+
+/* =============================================================================
+	Dropdown Styles - Still in Megamenu Namespace, unfortunately
+	========================================================================== */
+
+		//Text Widget
+		ul li.ss-nav-menu-mega ul.sub-menu li .jake-text-widget {
+			
+			h2 {
+				font-family: @serifFontFamily;
+				color: @blueDark;
+				line-height: 1.6em;
+				margin-bottom: 5px;
+			}
+
+			p {
+				font-family: @sansFontFamily;
+				color: @blueLight;
+				font-size: 16px;
+				line-height: 1.6em;
+			}
+
+			a {
+				color: @blueDark;
+				display: inline;
+			}
+		}
+
+		//Navigation List Widget
+		ul li.ss-nav-menu-mega ul.sub-menu li .jake-nav-list-widget,
+		ul li.ss-nav-menu-mega ul.sub-menu li .textwidget {
+			
+			dl {
+				font-size: 14px;
+				margin: 0;
+			}
+
+			dt {
+				text-transform: uppercase;
+				color: @blueLight;
+				border-bottom: 1px solid @grayMediumLight;
+				line-height: 1.6em;
+				font: @sansFontFamily;
+			}
+
+
+			dd {
+				font-size: 14px;
+				line-height: 1.6em;
+				margin: 1em 0 1em 1em;
+				
+				a { color: @blueDark; }
+
+				&:before {
+					content: "\2219";
+					position: absolute;
+					font-size: 2em;
+					margin-left: -.5em;
+					display: inline;
+					vertical-align: middle;
+					line-height: .5em;
+
+					color: @grayMediumLight;
+				}
+			}
+
+			dl + dl {
+				margin-top: 25px;
+
+				dd { 
+					float: left;
+
+					& + dd { margin-left: 2em; }
+					&:before { line-height: inherit; }
+
+				}
+			}
+
+	}
+
+}
