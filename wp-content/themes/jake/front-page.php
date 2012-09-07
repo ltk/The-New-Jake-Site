@@ -15,7 +15,7 @@
 		<a class="scroll-right" href="#" title="Next Case Study">Next Case Study</a>
 
 		<ol>
-			<li>
+			<li class="kennedy-center">
 				<div class="inner">
 					<h1>Slide Title for This Client</h1>
 					<p>Some text <a href="#" title="#">and a link</a>.</p>
