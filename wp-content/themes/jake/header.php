@@ -35,23 +35,30 @@
   <!--[if lt IE 7]><div class="alert">Your browser is too old to view this site properly. <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</div><![endif]-->
 
   <?php roots_header_before(); ?>
-  <header class="<?php echo WRAP_CLASSES; ?> clearfix" role="document">
-    <div class="pull-right">
-    <?php
-
-      //get_template_part('templates/nav', 'action');
-      //get_template_part('templates/search', 'site');
-
-    ?>
+  <header id="header" role="document">
+    <div class="inner clearfix">
+      <nav class="pull-right">
+        <ul>
+          <li><a href="#" title="#">ABOUT</a></li>
+          <li><a href="#" title="#">WORK</a></li>
+          <li><a href="#" title="#">BLOG</a></li>
+          <li><a href="#" title="#">CONTACT</a></li>
+        </ul>
+        <?php
+          //get_template_part('templates/nav', 'action');
+          //get_template_part('templates/search', 'site');
+        ?>
+      </nav>
     </div>
+
 
     <a id="brand" href="<?php echo get_home_url(); ?>" title="<?php bloginfo('name'); ?> | Home">The Jake Group</a>
 
     <?php
 
-    roots_header_before(); 
-      get_template_part('templates/nav', 'primary');
-    roots_header_after();
+    //roots_header_before(); 
+      //get_template_part('templates/nav', 'primary');
+    //roots_header_after();
 
     ?>
 
