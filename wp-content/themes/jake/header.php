@@ -25,9 +25,7 @@
 
   ?>
 
-
-
-  
+  <script type="text/javascript" src="http://fast.fonts.com/jsapi/d42568c5-5bd8-496d-9ffa-b16efcb876de.js"></script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -49,10 +47,9 @@
           //get_template_part('templates/search', 'site');
         ?>
       </nav>
+
+      <a id="brand" href="<?php echo get_home_url(); ?>" title="<?php bloginfo('name'); ?> | Home">The Jake Group</a>
     </div>
-
-
-    <a id="brand" href="<?php echo get_home_url(); ?>" title="<?php bloginfo('name'); ?> | Home">The Jake Group</a>
 
     <?php
 

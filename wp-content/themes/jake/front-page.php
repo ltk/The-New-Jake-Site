@@ -32,15 +32,13 @@
 	<div id="featured-clients">
 		<ol class="inner">
 			<li>
-				<a href="/url-for-this-slide" title="This Client">
-					This Client
-					<img src="/img/clients/this-client-logo.png" alt="This Client Logo" />
+				<a href="#kennedy-center" title="This Client">
+					<img src="/img/clients/kennedy-center/logo-white.png" alt="Kennedy Center Logo" />
 				</a>
 			</li>
 			<li>
-				<a href="/url-for-that-slide" title="That Client">
-					That Client
-					<img src="/img/clients/that-client-logo.png" alt="That Client Logo" />
+				<a href="#westview-press" title="That Client">
+					<img src="/img/clients/westview-press/logo-white.png" alt="Westview Press Logo" />
 				</a>
 			</li>
 		</ol>

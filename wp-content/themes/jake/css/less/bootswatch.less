@@ -1,24 +1,128 @@
+//Some quick vars
+@feature_banner_height: 360px;
+@feature_nav_height: 60px;
+@feature_nav_width: 50px;
+
+@jake_green: #9ccc50;
+@jake_blue: #003768;
+@dark_gray: #444343;
+
 .inner {
 	width:@gridRowWidth;
 	margin:0 auto;
 }
 
+.hidden-text() {
+	display:block;
+	text-indent:-10000px;
+}
+.clear-list-styles() {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.dimensions(@width, @height) {
+	width:@width;
+	height:@height;
+}
+
+#brand {
+	.dimensions(200px, 45px);
+	.hidden-text();
+	background:url(/img/jake-logo.png) no-repeat;
+}
+
+#header {
+	padding:20px 0;
+
+	nav {
+		ul {
+			.clear-list-styles();
+			.clearfix();
+			margin-top:12px;
+	
+			li {
+				float:left;
+				margin-left:40px; //make var for responsive breaks
+
+				a {
+					font-size:15px; //make var
+					//font-family:'Novecento W00 Normal'; //make var
+					font-family:'Novecento W00 Medium'; //make var
+
+					color:#666; //make var
+
+					&:hover {
+						color:@jake_green;
+						.transition(color 0.15s);
+						text-decoration:none;
+					}
+
+					&:active {
+						color:@jake_blue;
+						.transition(color 0.07s);
+					}
+				}
+			}
+		}
+	}
+}
+
 #featured-work {
+	position:relative;
+
+	a.scroll-left, a.scroll-right {
+		position:absolute;
+		.dimensions(@feature_nav_width, @feature_nav_height);
+		.hidden-text();
+		background:rgba(0,0,0,0.3);
+		top:(@feature_banner_height / 2) - (@feature_nav_height / 2);
+		display:none;
+	}
+
+	a.scroll-left {
+		left:0;
+	}
+
+	a.scroll-right {
+		right:0;
+	}
+
+	&:hover a.scroll-left, &:hover a.scroll-right {
+		display:block;
+	}
+
 	ol {
-		margin:0;
-		padding:0;
-		list-style:none;
+		.clear-list-styles();
 
 		li {
 			width:100%;
-			height:360px;
+			height:@feature_banner_height;
 			padding:0;
 			margin:0;
+			display:none;
 
 			&.kennedy-center {
 				background: url(/img/clients/kennedy-center/bg-med.jpg) no-repeat;
 				background-position:center; 
 			}
+		}
+		li:first-child {
+			display:block;
+		}
+	}
+}
+
+#featured-clients {
+	background:@dark_gray;
+	ol {
+		list-style:none;
+		.clearfix();
+		padding:5px 0;
+
+		li {
+			float:left;
 		}
 	}
 }
