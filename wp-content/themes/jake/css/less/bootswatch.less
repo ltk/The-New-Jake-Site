@@ -81,23 +81,39 @@
 		position:absolute;
 		.dimensions(@feature_nav_width, @feature_nav_height);
 		.hidden-text();
-		background:rgba(0,0,0,0.3);
+		background:rgba(0,0,0,0.4) no-repeat;
+		background-position:center center;
 		top:(@feature_banner_height / 2) - (@feature_nav_height / 2);
 		opacity:0;
 		.transition(opacity 0.3s);
+
+	}
+
+	&:hover a.scroll-left, &:hover a.scroll-right {
+		opacity:0.5;
 	}
 
 	a.scroll-left {
 		left:0;
+		.border-radius(0 3px 3px 0);
+		background-image:url(/img/scroll-left.png);
+
+		&:hover {
+			opacity:1;
+		}
 	}
 
 	a.scroll-right {
 		right:0;
+		.border-radius(3px 0 0 3px);
+		background-image:url(/img/scroll-right.png);
+
+		&:hover {
+			opacity:1;
+		}
 	}
 
-	&:hover a.scroll-left, &:hover a.scroll-right {
-		opacity:1;
-	}
+	
 
 	ol {
 		.clear-list-styles();
