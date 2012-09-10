@@ -14,20 +14,10 @@
 		<a class="scroll-left" href="#" title="Previous Case Study">Previous Case Study</a>
 		<a class="scroll-right" href="#" title="Next Case Study">Next Case Study</a>
 
-		<ol>
-			<li class="kennedy-center">
-				<div class="inner">
-					<h1>Slide Title for This Client</h1>
-					<p>Some text <a href="#" title="#">and a link</a>.</p>
-				</div>
-			</li>
-			<li class="elgin-butler">
-				<div class="inner">
-					<h1>Slide Title for That Client</h1>
-					<p>Some text <a href="#" title="#">and a link</a>.</p>
-				</div>
-			</li>
-		</ol>
+		<?php
+		$case_studies = new CaseStudyController();
+		echo $case_studies->output_homepage_list();
+		?>
 	</div>
 	<div id="featured-clients">
 		<ol class="inner">
