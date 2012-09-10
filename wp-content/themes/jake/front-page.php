@@ -21,7 +21,7 @@
 					<p>Some text <a href="#" title="#">and a link</a>.</p>
 				</div>
 			</li>
-			<li>
+			<li class="elgin-butler">
 				<div class="inner">
 					<h1>Slide Title for That Client</h1>
 					<p>Some text <a href="#" title="#">and a link</a>.</p>

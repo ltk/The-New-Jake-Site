@@ -35,19 +35,7 @@
   <?php roots_header_before(); ?>
   <header id="header" role="document">
     <div class="inner clearfix">
-      <nav class="pull-right">
-        <ul>
-          <li><a href="#" title="#">ABOUT</a></li>
-          <li><a href="#" title="#">WORK</a></li>
-          <li><a href="#" title="#">BLOG</a></li>
-          <li><a href="#" title="#">CONTACT</a></li>
-        </ul>
-        <?php
-          //get_template_part('templates/nav', 'action');
-          //get_template_part('templates/search', 'site');
-        ?>
-      </nav>
-
+      <?php get_template_part('templates/nav', 'primary'); ?>
       <a id="brand" href="<?php echo get_home_url(); ?>" title="<?php bloginfo('name'); ?> | Home">The Jake Group</a>
     </div>
 
