@@ -1,5 +1,22 @@
 <?php get_header(); ?>
 
+		<script type="text/x-handlebars" data-template-name="client">
+			<h1>{{view.content.title}}</h1>
+			<p>{{view.content.text}}</p>
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="next-button">
+			{{view.content}}
+		</script>
+		<script type="text/x-handlebars" data-template-name="prev-button">
+			{{view.content}}
+		</script>
+
+
+
+
+
+
 	<?php
 
 	//roots_marquee_before();
@@ -10,9 +27,8 @@
 
 	<?php //roots_content_before(); ?>
 	<div id="featured-work">
+
 		<!-- We might want to add the scroll divs with JS, or at least hide them with the .no-js class -->
-		<a class="scroll-left" href="#" title="Previous Case Study">Previous Case Study</a>
-		<a class="scroll-right" href="#" title="Next Case Study">Next Case Study</a>
 
 		<?php
 		$case_studies = new CaseStudyController();
