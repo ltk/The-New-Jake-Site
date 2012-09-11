@@ -51,18 +51,18 @@
 					font-size:15px; //make var
 					//font-family:'Novecento W00 Normal'; //make var
 					font-family:'Novecento W00 Medium'; //make var
+					.transition( color .25s );
 
 					color:#666; //make var
 
 					&:hover {
 						color:@jake_green;
-						.transition(color 0.15s);
 						text-decoration:none;
 					}
 
 					&:active {
+						.transition( color 0.15s );						
 						color:@jake_blue;
-						.transition(color 0.07s);
 					}
 				}
 
@@ -152,5 +152,13 @@
 		li {
 			float:left;
 		}
+	}
+}
+
+@media (max-width: 940px) {
+	.inner {
+		width: 100%;
+		margin:0;
+		padding:0 5px;
 	}
 }

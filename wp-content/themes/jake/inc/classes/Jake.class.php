@@ -1,7 +1,12 @@
 <?php
 class Jake
 {
+	public static function render_template( $template_options, $template_name = 'template-master' ) {
+		$template_directory = get_template_directory();
 
+		require( $template_directory . '/' . $template_name . '.php' );
+	}
+	
 	public static function display_breadcrumbs() {
 		if( function_exists( 'bcn_display' ) ) {
 		    bcn_display();
