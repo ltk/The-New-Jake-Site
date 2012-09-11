@@ -33,7 +33,7 @@
 	Banner.Clients = Ember.ArrayController.create({
 
 		content : [],
-		activeIndex : null,
+		activeIndex : 0,
 
 		create : function( title, img, text, logo, study ) {
 			var client = Banner.Client.create();
@@ -47,10 +47,13 @@
 			this.pushObject( client );
 		},
 
-		activate : function( client, index ) {
+		activate : function( animation, client, index ) {
+
+			animation( this.objectAtContent( this.activeIndex ), client );
+
 			this.deactivate();
-			client.set( "active", true );
 			this.set( "activeIndex", index );
+			client.set( "active", true );
 		},
 
 		deactivate : function() {
@@ -62,21 +65,25 @@
 		previous : function() {
 			if ( this.activeIndex > 0 ) {
 				var prev = this.activeIndex-1;
-				this.activate( this.objectAtContent( prev ), prev );
+				this.activate( this.slideRight, this.objectAtContent( prev ), prev );
 			} else {
 				var prev = this.content.length-1;
-				this.activate( this.objectAtContent( prev ), prev );
+				this.activate( this.slideRight, this.objectAtContent( prev ), prev );
 			}
 		},
 
 		next : function() {
 			if ( this.activeIndex < this.content.length-1 ) {
 				var next = this.activeIndex+1;
-				this.activate( this.objectAtContent( next ), next );
+				this.activate( this.slideRight, this.objectAtContent( next ), next );
 			} else {
 				var next = 0;
-				this.activate( this.objectAtContent( next ), next );
+				this.activate( this.slideRight, this.objectAtContent( next ), next );
 			}
+		},
+
+		slideRight : function( outgoing, incoming ) {
+			console.log( outgoing );
 		}
 
 	});
@@ -141,7 +148,7 @@
 	var client2 = Banner.Clients.create( "Title 2", "Image 2", "Text 2", "Logo 2", "Study 2" );
 	var client2 = Banner.Clients.create( "Title 3", "Image 3", "Text 3", "Logo 3", "Study 3" );
 
-	Banner.Clients.activate( Banner.Clients.content.get( "firstObject" ), 0 );
+	Banner.Clients.activate( Banner.Clients.slideRight, Banner.Clients.content.get( "firstObject" ), 0 );
 
 	//	Must have all the clients created first. Or at least one element.
 	Banner.WorkView.appendTo("#featured-work");
