@@ -26,6 +26,10 @@
   ?>
 
   <script type="text/javascript" src="http://fast.fonts.com/jsapi/d42568c5-5bd8-496d-9ffa-b16efcb876de.js"></script>
+  
+  <script type="text/javascript" src="js/vendor/handlebars-1.0.0.beta.6.js"></script>
+  <script type="text/javascript" src="js/vendor/ember-1.0.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 </head>
 
 <body <?php body_class(); ?>>
