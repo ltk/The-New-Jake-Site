@@ -17,6 +17,7 @@
 		text   : null,
 		logo   : null,
 		study  : null,
+		name   : null,
 		active : false,
 
 		showStudy : function() {
@@ -35,14 +36,19 @@
 		content : [],
 		activeIndex : 0,
 
+
 		create : function( title, img, text, logo, study ) {
 			var client = Banner.Client.create();
-			
-			client.set("title", title);
-			client.set("img", img);
-			client.set("text", text);
-			client.set("logo", logo);
-			client.set("study", study);
+			var name   = title.replace(" ", "-");
+
+			client.setProperties({
+				"name"  : name,
+				"title" : title,
+				"img"   : img,
+				"text"  : text,
+				"logo"  : logo,
+				"study" : study,
+			});
 			
 			this.pushObject( client );
 		},
@@ -62,7 +68,7 @@
 			}
 		},
 
-		previous : function() {
+		previous : function( view ) {
 			if ( this.activeIndex > 0 ) {
 				var prev = this.activeIndex-1;
 				this.activate( this.slideRight, this.objectAtContent( prev ), prev );
@@ -72,7 +78,7 @@
 			}
 		},
 
-		next : function() {
+		next : function( view ) {
 			if ( this.activeIndex < this.content.length-1 ) {
 				var next = this.activeIndex+1;
 				this.activate( this.slideRight, this.objectAtContent( next ), next );
@@ -83,7 +89,20 @@
 		},
 
 		slideRight : function( outgoing, incoming ) {
-			console.log( outgoing );
+
+			// position incoming to the right of outgoing
+			// slide outgoing and incoming to the right
+			// move outgoing somewhere.
+
+			var outgoingDom = $("."+outgoing.name);
+			var incomingDom = $("."+incoming.name);
+
+			outgoingDom.css("position", "relative");
+			incomingDom.css("position", "relative");
+			
+			outgoingDom.animate({ left: 0});
+			incomingDom.animate({ left: 200});
+
 		}
 
 	});
@@ -106,8 +125,13 @@
 
 		itemViewClass : Ember.View.extend({
 			templateName      : "client",
-			classNameBindings : ['this.content.active'], // Auto adds ".active" if client.active == true
+			classNameBindings : ['this.content.active', 'this.content.name'],
+
 		}),
+
+	});
+
+	Banner.LogoView = Ember.CollectionView.create({
 
 	});
 
@@ -115,11 +139,7 @@
 		templateName : "next-button",
 		tagName : "a",
 		classNames : ["scroll-right"],
-		template : Ember.Handlebars.compile("Next Slide"),
 		
-		attributeBindings: ['href'],
-			href: '#',
-
 		click : function() {
 			Banner.Clients.next();
 		},
@@ -129,10 +149,6 @@
 		templateName : "prev-button",
 		tagName : "a",
 		classNames : ["scroll-left"],
-		template : Ember.Handlebars.compile("Previous Slide"),
-		
-		attributeBindings: ['href'],
-			href: '#',
 
 		click : function() {
 			Banner.Clients.previous();
@@ -144,17 +160,22 @@
    ========================================================================== */
 
 
-	var client  = Banner.Clients.create( "Title", "Image", "Text", "Logo", "Study" );
-	var client2 = Banner.Clients.create( "Title 2", "Image 2", "Text 2", "Logo 2", "Study 2" );
-	var client2 = Banner.Clients.create( "Title 3", "Image 3", "Text 3", "Logo 3", "Study 3" );
+	var client  = Banner.Clients.create( "Title A", "Image A", "Text A", "Logo A", "Study A" );
+	var client2 = Banner.Clients.create( "Title B", "Image B", "Text B", "Logo B", "Study B" );
+	var client2 = Banner.Clients.create( "Title C", "Image C", "Text C", "Logo C", "Study C" );
 
 	Banner.Clients.activate( Banner.Clients.slideRight, Banner.Clients.content.get( "firstObject" ), 0 );
 
-	//	Must have all the clients created first. Or at least one element.
+
+/* =============================================================================
+   Adding to the Dom
+   ========================================================================== */
+
 	Banner.WorkView.appendTo("#featured-work");
 	
 	var nextButton = Banner.nextView.create();
 	nextButton.appendTo("#featured-work");	
+	
 	var prevButton = Banner.prevView.create();
 	prevButton.appendTo("#featured-work");
 
