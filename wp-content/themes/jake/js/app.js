@@ -160,7 +160,7 @@
 		content : Banner.Clients.content,
 
 		itemViewClass : Ember.View.extend({
-			classNameBindings : ['this.content.active'],
+			classNameBindings : ['this.content.active', 'this.content.name'],
 			templateName : function() {
 				return this.get("parentView").get("listItemTemplate");
 			}.property("this.get('parentView').listItemTemplate"),
