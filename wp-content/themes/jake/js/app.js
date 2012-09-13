@@ -166,23 +166,31 @@
 			}.property("this.get('parentView').listItemTemplate"),
 
 			slideLeft :  function() {
+				var windowWidth = $(window).outerWidth();
+
 				this.$().css("position", "relative")
-					.animate({ left : -100});
+					.animate({ left : -windowWidth00});
 			},
 
 			slideRight : function() {
+				var windowWidth = $(window).outerWidth();
+
 				this.$().css("position", "relative")
-					.animate({ left : 100});
+					.animate({ left : windowWidth});
 			},
 
 			positionLeft : function() {
+				var windowWidth = $(window).outerWidth();
+
 				this.$().css("position", "relative")
-					.animate({ left : -200});
+					.animate({ left : -windowWidth});
 			},
 
 			positionRight : function() {
+				var windowWidth = $(window).outerWidth();
+
 				this.$().css("position", "relative")
-					.animate({ left : 200});
+					.animate({ left : windowWidth});
 			},
 		}),
 	});
