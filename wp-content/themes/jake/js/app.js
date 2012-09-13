@@ -169,7 +169,7 @@
 				var windowWidth = $(window).outerWidth();
 
 				this.$().css("position", "relative")
-					.animate({ left : -windowWidth00});
+					.animate({ left : -windowWidth});
 			},
 
 			slideRight : function() {
@@ -198,6 +198,7 @@
 	Banner.Container = Ember.ContainerView.create({
 
 		childViews: ['works', 'logos', 'nextButton', 'prevButton'],
+		elementId : "featured-work",
 
 		works : Banner.listsView.create({
 			listItemTemplate : "works"
@@ -263,5 +264,5 @@
 
 	Banner.Clients.activate( Banner.Clients.content.get( "firstObject" ) );
 
-	Banner.Container.appendTo("#featured-work");
+	// Banner.Container.replaceIn("#featured-work");
 

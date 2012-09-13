@@ -18,17 +18,10 @@
 	?>
 
 	<?php //roots_content_before(); ?>
-	<div id="featured-work">
 
-		<!-- We might want to add the scroll divs with JS, or at least hide them with the .no-js class -->
-
-<!-- 		<?php
-		$case_studies = new CaseStudyController();
-		echo $case_studies->output_homepage_list();
-		?> -->
-	</div>
-	<div id="featured-clients">
-	</div>
+	<script type="text/x-handlebars">
+		{{view Ember.ContainerView currentViewBinding="Banner.Container"}}
+	</script>
 
 
 	<div id="content" class="container">
