@@ -1,5 +1,5 @@
 //Some quick vars
-@feature_banner_height: 360px;
+@feature_banner_height: 507px;
 @feature_nav_height: 60px;
 @feature_nav_width: 50px;
 
@@ -34,24 +34,28 @@
 	.dimensions(200px, 45px);
 	.hidden-text();
 	background:url(/img/jake-logo.png) no-repeat;
+	.pull-left();
 }
 
 #header {
 	padding:20px 0;
+	.box-shadow(inset 0px -1px 3px -1px #999);
 
-	nav {
+	nav.primary-nav {
+		.pull-right();
+
 		ul {
 			.clear-list-styles();
 			.clearfix();
 			margin-top:10px;
-			margin-right:-10px;
+			margin-right:-11px;
 	
 			li {
 				float:left;
 
 				a {
-					padding:10px 20px;
-					font-size:15px; //make var
+					padding:11px 22px;
+					font-size:16px; //make var
 					//font-family:'Novecento W00 Normal'; //make var
 					font-family:'Novecento W00 Medium'; //make var
 					.transition( color .25s );
@@ -132,6 +136,28 @@
 
 			&.kennedy-center {
 				background: url(/img/clients/kennedy-center/bg-med.jpg) no-repeat;
+
+				div.content {
+					width:500px;
+					.pull-right();
+
+					h1 {
+						font-weight:normal;
+						font-size:49px;
+						color:@white;
+						text-align:right;
+						line-height:1.6em;
+						margin-top:36px;
+					}
+
+					p {
+						.pull-right();
+						width:325px;
+						color:@white;
+						text-align:left;
+					}
+				}
+				
 			}
 
 			&.elgin-butler {
@@ -147,21 +173,57 @@
 
 #featured-clients {
 	background:@dark_gray;
+	.box-shadow(inset 0px 1px 5px -1px #000);
 	ol {
 		list-style:none;
 		.clearfix();
-		padding:10px 0;
+		padding:14px 0;
 
 		li {
 			float:left;
+
+			a {
+				padding:0 12px;
+			}
 		}
 	}
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1014px) {
 	.inner {
 		width: 100%;
 		margin:0;
 		padding:0 5px;
+	}
+}
+
+@media (max-width: 650px) {
+	#brand {
+		margin:0 auto 20px;
+		float:none;
+		background-image:url(/img/jake-logo-small.png);
+		width:150px;
+		height:34px;
+	}
+	#header {
+		nav.primary-nav {
+			float:none;
+			width:100%;
+
+			ul {
+				width:100%;
+				margin:0;
+				li {
+					width:25%;
+					a {
+						display:inline-block;
+						padding:0;
+						width:100%;
+						text-align:center;
+						.box-sizing(border-box);
+					}
+				}
+			}
+		}
 	}
 }
