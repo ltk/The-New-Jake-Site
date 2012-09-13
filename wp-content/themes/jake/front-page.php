@@ -1,8 +1,10 @@
 <?php get_header(); ?>
 
 		<script data-template-name="works" type="text/x-handlebars">
-			<h1>{{view.content.title}}</h1>
-			<p>{{view.content.text}}</p>
+			<div class="content">
+				<h1>{{view.content.title}}</h1>
+				<p>{{view.content.text}}</p>
+			</div>
 		</script>
 
 		<script data-template-name="logos" type="text/x-handlebars">

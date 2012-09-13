@@ -187,7 +187,8 @@
 
 				this.$().css({
 					display : "block",
-					left    : -windowWidth
+					left    : -windowWidth,
+					'z-index' : 120
 				});
 			},
 
@@ -196,7 +197,8 @@
 
 				this.$().css({
 					display : "block",
-					left    : windowWidth
+					left    : windowWidth,
+					'z-index' : 120
 				});
 			},
 
@@ -207,6 +209,7 @@
 
 		childViews: ['works', 'logos', 'nextButton', 'prevButton'],
 		elementId : "featured-work",
+
 
 		works : Banner.listsView.create({
 			listItemTemplate : "works"
@@ -228,7 +231,9 @@
 				outgoingView.slideLeft();
 				incomingView.slideLeft();
 
-				Banner.Clients.activate( Banner.Clients.getNext() );
+				setTimeout(function(){
+					Banner.Clients.activate( Banner.Clients.getNext() );
+				},400);
 
 			},
 		}),
@@ -243,10 +248,13 @@
 		
 				incomingView.positionLeft();		
 				outgoingView.slideRight();
+				console.log(outgoingView);
 				incomingView.slideRight();
 
-				Banner.Clients.activate( Banner.Clients.getPrev() );
-
+				
+				setTimeout(function(){
+					Banner.Clients.activate( Banner.Clients.getPrev() );
+				},400);
 
 			},
 		}),

@@ -88,6 +88,7 @@
 
 	a.scroll-left, a.scroll-right {
 		position:absolute;
+		z-index:200;
 		.dimensions(@feature_nav_width, @feature_nav_height);
 		.hidden-text();
 		background:rgba(0,0,0,0.4) no-repeat;
@@ -130,14 +131,16 @@
 		li {
 			width:100%;
 			height:@feature_banner_height;
-			position:relative;
-			left:0;
+			position:absolute;
+			left:100%;
+			top:0;
 			padding:0;
 			margin:0;
-			display:none;
+			display:block;
 			float:left;
 			background-position:center; 
 			.transition(background-image 0.7s);
+			z-index:90;
 
 			&.Title-A {
 				background: url(/img/clients/kennedy-center/bg-med.jpg) no-repeat;
@@ -169,9 +172,14 @@
 				background: url(/img/clients/elgin-butler/bg-med.jpg) no-repeat;
 			}
 
+			&.Title-C {
+				background: url(/img/clients/westview-press/bg-med.jpg) no-repeat;
+			}
+
 		}
 		li.active{
-			display:block;
+			left:0;
+			z-index:100;
 		}
 	}
 }
