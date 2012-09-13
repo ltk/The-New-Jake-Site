@@ -55,57 +55,27 @@
 			this.pushObject( client );
 		},
 
-		activate : function( animation, client, index ) {
-
-			animation( this.objectAtContent( this.get("activeIndex") ), client );
-
-			this.deactivate();
-			this.set( "activeIndex", index );
-			client.set( "active", true );
+		activate : function( client ) {
+			// if (client !== undefined) {
+				// this.deactivate();
+				client.set( "active", true );
+			// }
 		},
 
 		deactivate : function() {
-			if ( this.get("activeIndex") !== null ) {
+			if ( this.get("activeIndex") !== -1 ) {
 				this.objectAtContent( this.get("activeIndex") ).set( "active", false );
 			}
 		},
 
-		previous : function( view ) {
-			if ( this.get("activeIndex") > 0 ) {
-				var prev = this.get("activeIndex")-1;
-				this.activate( this.slideRight, this.objectAtContent( prev ), prev );
-			} else {
-				var prev = this.content.length-1;
-				this.activate( this.slideRight, this.objectAtContent( prev ), prev );
-			}
+
+		prev : function( ) {
+			alert("test")
 		},
 
-		next : function( view ) {
-			if ( this.get("activeIndex") < this.content.length-1 ) {
-				var next = this.get("activeIndex")+1;
-				this.activate( this.slideRight, this.objectAtContent( next ), next );
-			} else {
-				var next = 0;
-				this.activate( this.slideRight, this.objectAtContent( next ), next );
-			}
+		next : function( ) {
+			alert("testing")
 		},
-
-		slideRight : function( outgoing, incoming ) {
-
-			// position incoming to the right of outgoing
-			// slide outgoing and incoming to the right
-			// move outgoing somewhere.
-
-			var outgoingDom = $("."+outgoing.name);
-			var incomingDom = $("."+incoming.name);
-
-			outgoingDom.css("position", "relative");
-			incomingDom.css("position", "relative");
-			
-			outgoingDom.animate({ left: 0});
-			incomingDom.animate({ left: 200});
-
-		}
 
 	});
 
@@ -115,47 +85,56 @@
    Views
    ========================================================================== */
 
-	Banner.WorkView = Ember.CollectionView.create({
+	Banner.scrollButtonsView = Ember.View.extend({
+		tagName     : "a",
+		// clickAction : Banner.Clients.next(),
+		// click : function() {
+		// 	clickAction();
+		// },
+ 	});
+
+	Banner.listsView = Ember.CollectionView.extend({
 		tagName : "ul",
 		content : Banner.Clients.content,
 
-		// Not actually necessary
-		emptyView : Ember.View.extend({
-			template : Ember.Handlebars.compile("There are no clients."),
-		}),
-
-
 		itemViewClass : Ember.View.extend({
-			templateName      : "client",
-			classNameBindings : ['this.content.active', 'this.content.name'],
+			classNameBindings : ['this.content.active'],
+			templateName : function() {
+				return this.get("parentView").get("listItemTemplate");
+			}.property("this.get('parentView').listItemTemplate"),
+		}),
+	});
 
+	Banner.Container = Ember.ContainerView.create({
+
+		childViews: ['works', 'logos', 'nextButton', 'prevButton'],
+
+		works : Banner.listsView.create({
+			listItemTemplate : "works"
 		}),
 
+		logos : Banner.listsView.create({
+			listItemTemplate : "logos"
+		}),
+
+		nextButton : Banner.scrollButtonsView.create({ 
+			classNames : 'scroll-right', 
+			template   : Ember.Handlebars.compile("Go to Next Slide"),
+			click      : function() { Banner.Clients.next() },
+		}),
+
+		prevButton : Banner.scrollButtonsView.create({ 
+			classNames : 'scroll-left', 
+			template   : Ember.Handlebars.compile("Go to Previous Slide"),
+			click      : function() { Banner.Clients.prev() },
+		}),
+
+
 	});
 
-	Banner.LogoView = Ember.CollectionView.create({
 
-	});
 
-	Banner.nextView = Ember.View.extend({
-		templateName : "next-button",
-		tagName : "a",
-		classNames : ["scroll-right"],
-		
-		click : function() {
-			Banner.Clients.next();
-		},
- 	});
 
-	Banner.prevView = Ember.View.extend({
-		templateName : "prev-button",
-		tagName : "a",
-		classNames : ["scroll-left"],
-
-		click : function() {
-			Banner.Clients.previous();
-		},
- 	});
 
 /* =============================================================================
    In the PHP Stuff
@@ -166,18 +145,12 @@
 	var client2 = Banner.Clients.create( "Title B", "Image B", "Text B", "Logo B", "Study B" );
 	var client2 = Banner.Clients.create( "Title C", "Image C", "Text C", "Logo C", "Study C" );
 
-	Banner.Clients.activate( Banner.Clients.slideRight, Banner.Clients.content.get( "firstObject" ), 0 );
-
-
 /* =============================================================================
-   Adding to the Dom
+   Initalization
    ========================================================================== */
 
-	Banner.WorkView.appendTo("#featured-work");
-	
-	var nextButton = Banner.nextView.create();
-	nextButton.appendTo("#featured-work");	
-	
-	var prevButton = Banner.prevView.create();
-	prevButton.appendTo("#featured-work");
+
+	Banner.Clients.activate( Banner.Clients.content.get( "firstObject" ) );
+
+	Banner.Container.appendTo("#featured-work");
 

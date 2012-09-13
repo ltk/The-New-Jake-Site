@@ -1,21 +1,13 @@
 <?php get_header(); ?>
 
-		<script data-template-name="client" type="text/x-handlebars">
+		<script data-template-name="works" type="text/x-handlebars">
 			<h1>{{view.content.title}}</h1>
 			<p>{{view.content.text}}</p>
 		</script>
 
-		<script data-template-name="next-button" type="text/x-handlebars">
-			Go to Next Slide
+		<script data-template-name="logos" type="text/x-handlebars">
+			<p>{{view.content.img}}</p>
 		</script>
-		<script data-template-name="prev-button" type="text/x-handlebars">
-			Go to Previous Slide
-		</script>
-
-
-
-
-
 
 	<?php
 
