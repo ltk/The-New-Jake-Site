@@ -128,13 +128,15 @@
 		li {
 			width:100%;
 			height:@feature_banner_height;
+			position:relative;
+			left:0;
 			padding:0;
 			margin:0;
 			display:none;
 			background-position:center; 
 			.transition(background-image 0.7s);
 
-			&.kennedy-center {
+			&.Title-A {
 				background: url(/img/clients/kennedy-center/bg-med.jpg) no-repeat;
 
 				div.content {
@@ -160,12 +162,12 @@
 				
 			}
 
-			&.elgin-butler {
+			&.Title-B {
 				background: url(/img/clients/elgin-butler/bg-med.jpg) no-repeat;
 			}
 
 		}
-		li:first-child {
+		li.active{
 			display:block;
 		}
 	}
