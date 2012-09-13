@@ -36,7 +36,7 @@
 		content : [],
 		
 		activeIndex: function() {
-			return this.indexOf( this.filterProperty('active', true)[0] );
+			return this.indexOf( this.filterProperty('active')[0] );
 		}.property('@each.active'),
 
 		create : function( title, img, text, logo, study ) {
@@ -57,7 +57,7 @@
 
 		activate : function( client ) {
 			// if (client !== undefined) {
-				// this.deactivate();
+				this.deactivate();
 				client.set( "active", true );
 			// }
 		},
@@ -68,14 +68,79 @@
 			}
 		},
 
-
-		prev : function( ) {
-			alert("test")
+		getActive : function() {
+			var active = this.get("activeIndex")
+			this.objectAtContent( active );
 		},
 
-		next : function( ) {
-			alert("testing")
+		getNext : function( ) {
+			var active = this.get("activeIndex")
+			if (  active < this.get("length") - 1 ) {
+				return this.objectAtContent( active + 1 );
+			} else {
+				return this.get( "firstObject" );
+			}
 		},
+
+		getPrev : function( ) {
+			var active = this.get("activeIndex")
+			if (  active > 0 ) {
+				return this.objectAtContent( active - 1 );
+			} else {
+				return this.get( "lastObject" );
+			}
+		},
+
+		_getNextView : function( view ) {
+			var active = this.get("activeIndex");
+			var views  = this._getViews( view );
+			var length = views.get("length") - 1;
+			
+			if ( active < length ) {
+				return views[ active + 1 ];
+			} else {
+				return views[ 0 ];
+			}
+		},
+
+		_getPrevView : function( view ) {
+			var active = this.get("activeIndex")
+			var views  = this._getViews( view );
+			var length = views.get("length") - 1;
+
+			if (  active > 0 ) {
+				return views[ active - 1 ];
+			} else {
+				return views[ length ];
+			}
+		},
+
+		_getActiveView : function( view ) {
+			var active = this.get("activeIndex")
+			var views  = this._getViews( view );
+
+			return views[ active ];
+		},
+
+
+		getView : function( view, state ){
+			switch( state ){
+				case 'next' :
+					return this._getNextView( view );
+					break;
+				case 'prev' :
+					return this._getPrevView( view );
+					break;
+				case 'active' :
+					return this._getActiveView( view );
+					break;
+			}
+		},
+
+		_getViews : function( view ) {
+			return Banner.Container.get( view ).get("childViews");
+		},
+
 
 	});
 
@@ -87,10 +152,7 @@
 
 	Banner.scrollButtonsView = Ember.View.extend({
 		tagName     : "a",
-		// clickAction : Banner.Clients.next(),
-		// click : function() {
-		// 	clickAction();
-		// },
+
  	});
 
 	Banner.listsView = Ember.CollectionView.extend({
@@ -102,6 +164,26 @@
 			templateName : function() {
 				return this.get("parentView").get("listItemTemplate");
 			}.property("this.get('parentView').listItemTemplate"),
+
+			slideLeft :  function() {
+				this.$().css("position", "relative")
+					.animate({ left : -100});
+			},
+
+			slideRight : function() {
+				this.$().css("position", "relative")
+					.animate({ left : 100});
+			},
+
+			positionLeft : function() {
+				this.$().css("position", "relative")
+					.animate({ left : -200});
+			},
+
+			positionRight : function() {
+				this.$().css("position", "relative")
+					.animate({ left : 200});
+			},
 		}),
 	});
 
@@ -120,13 +202,34 @@
 		nextButton : Banner.scrollButtonsView.create({ 
 			classNames : 'scroll-right', 
 			template   : Ember.Handlebars.compile("Go to Next Slide"),
-			click      : function() { Banner.Clients.next() },
+			
+			click : function() {
+				var outgoingView = Banner.Clients.getView( "works", "active" );
+				var incomingView = Banner.Clients.getView( "works", "next" );
+				
+				outgoingView.slideLeft();
+				incomingView.slideRight();
+
+				Banner.Clients.activate( Banner.Clients.getNext() );
+
+			},
 		}),
 
 		prevButton : Banner.scrollButtonsView.create({ 
 			classNames : 'scroll-left', 
 			template   : Ember.Handlebars.compile("Go to Previous Slide"),
-			click      : function() { Banner.Clients.prev() },
+			
+			click : function() {
+				var outgoingView = Banner.Clients.getView( "works", "active" );
+				var incomingView = Banner.Clients.getView( "works", "prev" );
+				
+				outgoingView.slideLeft();
+				incomingView.slideRight();
+
+				Banner.Clients.activate( Banner.Clients.getPrev() );
+
+
+			},
 		}),
 
 
