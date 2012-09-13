@@ -167,31 +167,39 @@
 
 			slideLeft :  function() {
 				var windowWidth = $(window).outerWidth();
+				var left        = parseInt( this.$().css("left") );
 
-				this.$().css("position", "relative")
-					.animate({ left : -windowWidth});
+				this.$().css("display", "block")
+					.animate({ left : left - windowWidth });
+					// Pass in callback functions to remove the left value/style attr?
 			},
 
 			slideRight : function() {
 				var windowWidth = $(window).outerWidth();
+				var left        = parseInt( this.$().css("left") );
 
-				this.$().css("position", "relative")
-					.animate({ left : windowWidth});
+				this.$().css("display", "block")
+					.animate({ left : left + windowWidth });
 			},
 
 			positionLeft : function() {
 				var windowWidth = $(window).outerWidth();
 
-				this.$().css("position", "relative")
-					.animate({ left : -windowWidth});
+				this.$().css({
+					display : "block",
+					left    : -windowWidth
+				});
 			},
 
 			positionRight : function() {
 				var windowWidth = $(window).outerWidth();
 
-				this.$().css("position", "relative")
-					.animate({ left : windowWidth});
+				this.$().css({
+					display : "block",
+					left    : windowWidth
+				});
 			},
+
 		}),
 	});
 
@@ -215,9 +223,10 @@
 			click : function() {
 				var outgoingView = Banner.Clients.getView( "works", "active" );
 				var incomingView = Banner.Clients.getView( "works", "next" );
-				
+
+				incomingView.positionRight();
 				outgoingView.slideLeft();
-				incomingView.slideRight();
+				incomingView.slideLeft();
 
 				Banner.Clients.activate( Banner.Clients.getNext() );
 
@@ -231,8 +240,9 @@
 			click : function() {
 				var outgoingView = Banner.Clients.getView( "works", "active" );
 				var incomingView = Banner.Clients.getView( "works", "prev" );
-				
-				outgoingView.slideLeft();
+		
+				incomingView.positionLeft();		
+				outgoingView.slideRight();
 				incomingView.slideRight();
 
 				Banner.Clients.activate( Banner.Clients.getPrev() );
