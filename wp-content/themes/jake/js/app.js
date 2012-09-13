@@ -34,8 +34,10 @@
 	Banner.Clients = Ember.ArrayController.create({
 
 		content : [],
-		activeIndex : 0,
-
+		
+		activeIndex: function() {
+			return this.indexOf( this.filterProperty('active', true)[0] );
+		}.property('@each.active'),
 
 		create : function( title, img, text, logo, study ) {
 			var client = Banner.Client.create();
@@ -55,7 +57,7 @@
 
 		activate : function( animation, client, index ) {
 
-			animation( this.objectAtContent( this.activeIndex ), client );
+			animation( this.objectAtContent( this.get("activeIndex") ), client );
 
 			this.deactivate();
 			this.set( "activeIndex", index );
@@ -63,14 +65,14 @@
 		},
 
 		deactivate : function() {
-			if ( this.activeIndex !== null ) {
-				this.objectAtContent( this.activeIndex ).set( "active", false );
+			if ( this.get("activeIndex") !== null ) {
+				this.objectAtContent( this.get("activeIndex") ).set( "active", false );
 			}
 		},
 
 		previous : function( view ) {
-			if ( this.activeIndex > 0 ) {
-				var prev = this.activeIndex-1;
+			if ( this.get("activeIndex") > 0 ) {
+				var prev = this.get("activeIndex")-1;
 				this.activate( this.slideRight, this.objectAtContent( prev ), prev );
 			} else {
 				var prev = this.content.length-1;
@@ -79,8 +81,8 @@
 		},
 
 		next : function( view ) {
-			if ( this.activeIndex < this.content.length-1 ) {
-				var next = this.activeIndex+1;
+			if ( this.get("activeIndex") < this.content.length-1 ) {
+				var next = this.get("activeIndex")+1;
 				this.activate( this.slideRight, this.objectAtContent( next ), next );
 			} else {
 				var next = 0;
