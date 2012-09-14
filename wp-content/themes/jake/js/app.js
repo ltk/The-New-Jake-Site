@@ -93,7 +93,7 @@
 
 		_getNextView : function( view ) {
 			var active = this.get("activeIndex");
-			var views  = this._getViews( view );
+			var views  = this._getChildViews( view );
 			var length = views.get("length") - 1;
 			
 			if ( active < length ) {
@@ -105,7 +105,7 @@
 
 		_getPrevView : function( view ) {
 			var active = this.get("activeIndex")
-			var views  = this._getViews( view );
+			var views  = this._getChildViews( view );
 			var length = views.get("length") - 1;
 
 			if (  active > 0 ) {
@@ -117,7 +117,7 @@
 
 		_getActiveView : function( view ) {
 			var active = this.get("activeIndex")
-			var views  = this._getViews( view );
+			var views  = this._getChildViews( view );
 
 			return views[ active ];
 		},
@@ -134,11 +134,16 @@
 				case 'active' :
 					return this._getActiveView( view );
 					break;
+
 			}
 		},
 
-		_getViews : function( view ) {
+		_getChildViews : function( view ) {
 			return Banner.Container.get( view ).get("childViews");
+		},
+
+		_getView : function( view ) {
+			return Banner.Container.get( view );	
 		},
 
 		handleClick : function ( view, direction ) {
@@ -151,9 +156,13 @@
 			var outgoingLogo = this.getView( "logos", "active" );
 			var incomingLogo = this.getView( "logos", direction );
 
+			var highlightView = this._getView( "logoHighlight" );
+
 
 			if( ! incomingWork.$().hasClass( 'animating' ) ) {
-				
+
+				highlightView.slide( incomingLogo, duration );
+
 				if( direction == 'prev' ) {
 					incomingWork.positionLeft( duration );		
 					outgoingWork.slideRight( duration );
@@ -173,7 +182,9 @@
 					}
 				}, duration);
 			}
-		}
+		},
+
+
 
 
 	});
@@ -264,6 +275,17 @@
 			tagName   : 'span',
 			elementId : 'logo-highlight',
 			template  : Ember.Handlebars.compile("Now Showing"),
+			
+			slide : function( incoming, duration ) {
+				var newPosition = incoming.$().position().left;
+				var newWidth    = incoming.$().outerWidth();
+
+				this.$()
+					.animate({
+						left  : newPosition,
+						width : newWidth
+					});
+			}
 		}),
 
 		nextButton : Banner.scrollButtonsView.create({ 
