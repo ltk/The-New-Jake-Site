@@ -215,7 +215,7 @@
 
 	Banner.Container = Ember.ContainerView.create({
 
-		childViews: ['works', 'logos', 'nextButton', 'prevButton'],
+		childViews: ['works', 'logos', 'nextButton', 'prevButton', 'logoHighlight'],
 		elementId : "featured-work",
 
 		works : Banner.listsView.create({
@@ -224,6 +224,12 @@
 
 		logos : Banner.listsView.create({
 			listItemTemplate : "logos"
+		}),
+
+		logoHighlight : Ember.View.create({
+			tagName   : 'span',
+			elementId : 'logo-highlight',
+			template  : Ember.Handlebars.compile("Now Showing"),
 		}),
 
 		nextButton : Banner.scrollButtonsView.create({ 

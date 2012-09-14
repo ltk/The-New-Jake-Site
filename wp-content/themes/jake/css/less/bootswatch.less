@@ -15,7 +15,7 @@
 	margin:0 auto;
 }
 
-.hidden-text() {
+.hidden-text {
 	display:block;
 	text-indent:-10000px;
 }
@@ -32,7 +32,7 @@
 
 #brand {
 	.dimensions(200px, 45px);
-	.hidden-text();
+	.hidden-text;
 	background:url(/img/jake-logo.png) no-repeat;
 	.pull-left();
 }
@@ -83,14 +83,27 @@
 	}
 }
 
+#logo-highlight {
+	.hidden-text;
+	height: 5px;
+	position: absolute;
+	bottom:-5px;
+	width: 100px;
+	display: block;
+	background: @jake_green;
+}
+
 #featured-work {
 	position:relative;
+	border-bottom:5px solid #D9D7D8;
+	
+	
 
 	a.scroll-left, a.scroll-right {
 		position:absolute;
 		z-index:40;
 		.dimensions(@feature_nav_width, @feature_nav_height);
-		.hidden-text();
+		.hidden-text;
 		background:rgba(0,0,0,0.4) no-repeat;
 		background-position:center center;
 		top:(@feature_banner_height / 2) - (@feature_nav_height / 2);
