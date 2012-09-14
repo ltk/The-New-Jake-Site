@@ -88,7 +88,7 @@
 
 	a.scroll-left, a.scroll-right {
 		position:absolute;
-		z-index:30;
+		z-index:40;
 		.dimensions(@feature_nav_width, @feature_nav_height);
 		.hidden-text();
 		background:rgba(0,0,0,0.4) no-repeat;
@@ -125,9 +125,11 @@
 
 	
 
-	ul {
+	#works {
 		.clear-list-styles();
 		position:relative;
+		height:@feature_banner_height;
+		overflow: hidden;
 
 		li {
 			width:100%;
@@ -135,12 +137,16 @@
 			position:absolute;
 			padding:0;
 			margin:0;
+			left:0;
 			display:block;
 			background-position:center; 
 			z-index:10;
 
-			&.active {
+			&.animating {
 				z-index:20;
+			}
+			&.active {
+				z-index:30;
 			}
 
 			&.Title-A {
@@ -181,23 +187,25 @@
 	}
 }
 
-#featured-clients {
+
+	
+#logos {
+	.clear-list-styles();
 	background:@dark_gray;
 	.box-shadow(inset 0px 1px 5px -1px #000);
-	ul {
-		list-style:none;
-		.clearfix();
-		padding:14px 0;
+	list-style:none;
+	.clearfix();
+	padding:14px 0;
 
-		li {
-			float:left;
+	li {
+		float:left;
 
-			a {
-				padding:0 12px;
-			}
+		a {
+			padding:0 12px;
 		}
 	}
 }
+
 
 @media (max-width: 1014px) {
 	.inner {
