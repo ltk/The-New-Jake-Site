@@ -141,6 +141,40 @@
 			return Banner.Container.get( view ).get("childViews");
 		},
 
+		handleClick : function ( view, direction ) {
+			var controller = this;
+			var duration = view.get('animation_duration');
+
+			var outgoingWork = this.getView( "works", "active" );
+			var incomingWork = this.getView( "works", direction );
+
+			var outgoingLogo = this.getView( "logos", "active" );
+			var incomingLogo = this.getView( "logos", direction );
+
+
+			if( ! incomingWork.$().hasClass( 'animating' ) ) {
+				
+				if( direction == 'prev' ) {
+					incomingWork.positionLeft( duration );		
+					outgoingWork.slideRight( duration );
+					incomingWork.slideRight( duration );
+				} else if( direction == 'next' ){
+					incomingWork.positionRight( duration );
+					outgoingWork.slideLeft( duration );
+					incomingWork.slideLeft( duration );
+				}
+
+				var delay = setTimeout( function() {
+					if( direction == 'prev' ) {
+						console.log(controller);
+						controller.activate( controller.getPrev() );
+					} else if( direction == 'next' ){
+						controller.activate( controller.getNext() );
+					}
+				}, duration);
+			}
+		}
+
 
 	});
 
@@ -237,18 +271,7 @@
 			template   : Ember.Handlebars.compile("Go to Next Slide"),
 			
 			click : function() {
-				var duration = this.get('animation_duration');
-				var outgoingView = Banner.Clients.getView( "works", "active" );
-				var incomingView = Banner.Clients.getView( "works", "next" );
-				if( ! incomingView.$().hasClass('animating') ) {
-					incomingView.positionRight( duration );
-					outgoingView.slideLeft( duration );
-					incomingView.slideLeft( duration );
-
-					var delay = setTimeout( function() {
-						Banner.Clients.activate( Banner.Clients.getNext());
-					}, duration);
-				}
+				Banner.Clients.handleClick(this, 'next');
 			},
 		}),
 
@@ -258,20 +281,7 @@
 
 			
 			click : function() {
-				var duration = this.get('animation_duration');
-				var outgoingView = Banner.Clients.getView( "works", "active" );
-				var incomingView = Banner.Clients.getView( "works", "prev" );
-
-				if( ! incomingView.$().hasClass('animating') ) {
-					incomingView.positionLeft( duration );		
-					outgoingView.slideRight( duration );
-					incomingView.slideRight(duration );
-
-					var delay = setTimeout( function() {
-						Banner.Clients.activate( Banner.Clients.getPrev());
-					}, duration);
-				}
-
+				Banner.Clients.handleClick(this, 'prev');
 			},
 		}),
 
