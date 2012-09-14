@@ -88,7 +88,7 @@
 
 	a.scroll-left, a.scroll-right {
 		position:absolute;
-		z-index:200;
+		z-index:30;
 		.dimensions(@feature_nav_width, @feature_nav_height);
 		.hidden-text();
 		background:rgba(0,0,0,0.4) no-repeat;
@@ -127,20 +127,21 @@
 
 	ul {
 		.clear-list-styles();
+		position:relative;
 
 		li {
 			width:100%;
 			height:@feature_banner_height;
 			position:absolute;
-			left:100%;
-			top:0;
 			padding:0;
 			margin:0;
 			display:block;
-			float:left;
 			background-position:center; 
-			.transition(background-image 0.7s);
-			z-index:90;
+			z-index:10;
+
+			&.active {
+				z-index:20;
+			}
 
 			&.Title-A {
 				background: url(/img/clients/kennedy-center/bg-med.jpg) no-repeat;
@@ -176,10 +177,6 @@
 				background: url(/img/clients/westview-press/bg-med.jpg) no-repeat;
 			}
 
-		}
-		li.active{
-			left:0;
-			z-index:100;
 		}
 	}
 }

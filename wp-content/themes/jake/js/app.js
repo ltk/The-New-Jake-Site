@@ -170,7 +170,7 @@
 				var left        = parseInt( this.$().css("left") );
 
 				this.$().css("display", "block")
-					.animate({ left : left - windowWidth });
+					.animate({ left : left - windowWidth }, "slow");
 					// Pass in callback functions to remove the left value/style attr?
 			},
 
@@ -179,7 +179,7 @@
 				var left        = parseInt( this.$().css("left") );
 
 				this.$().css("display", "block")
-					.animate({ left : left + windowWidth });
+					.animate({ left : left + windowWidth }, "slow");
 			},
 
 			positionLeft : function() {
@@ -187,8 +187,7 @@
 
 				this.$().css({
 					display : "block",
-					left    : -windowWidth,
-					'z-index' : 120
+					left    : -windowWidth
 				});
 			},
 
@@ -197,8 +196,7 @@
 
 				this.$().css({
 					display : "block",
-					left    : windowWidth,
-					'z-index' : 120
+					left    : windowWidth
 				});
 			},
 
@@ -209,7 +207,6 @@
 
 		childViews: ['works', 'logos', 'nextButton', 'prevButton'],
 		elementId : "featured-work",
-
 
 		works : Banner.listsView.create({
 			listItemTemplate : "works"
@@ -231,9 +228,7 @@
 				outgoingView.slideLeft();
 				incomingView.slideLeft();
 
-				setTimeout(function(){
-					Banner.Clients.activate( Banner.Clients.getNext() );
-				},400);
+				Banner.Clients.activate( Banner.Clients.getNext() );
 
 			},
 		}),
@@ -248,13 +243,10 @@
 		
 				incomingView.positionLeft();		
 				outgoingView.slideRight();
-				console.log(outgoingView);
 				incomingView.slideRight();
 
-				
-				setTimeout(function(){
-					Banner.Clients.activate( Banner.Clients.getPrev() );
-				},400);
+				Banner.Clients.activate( Banner.Clients.getPrev() );
+
 
 			},
 		}),
