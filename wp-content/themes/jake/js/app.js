@@ -170,7 +170,7 @@
 				var left        = parseInt( this.$().css("left") );
 
 				this.$().css("display", "block")
-					.animate({ left : left - windowWidth });
+					.animate({ left : left - windowWidth }, "slow");
 					// Pass in callback functions to remove the left value/style attr?
 			},
 
@@ -179,7 +179,7 @@
 				var left        = parseInt( this.$().css("left") );
 
 				this.$().css("display", "block")
-					.animate({ left : left + windowWidth });
+					.animate({ left : left + windowWidth }, "slow");
 			},
 
 			positionLeft : function() {
