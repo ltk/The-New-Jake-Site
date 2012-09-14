@@ -319,8 +319,8 @@
    ========================================================================== */
 
 
-	var client  = Banner.Clients.create( "Title A", "Image A", "Text A", "Logo A", "Study A" );
-	var client2 = Banner.Clients.create( "Title B", "Image B", "Text B", "Logo B", "Study B" );
+	var client  = Banner.Clients.create( "ENCORE DESIGN", "The Kennedy Center", "Designing peer-to-peer marketing tools for our nation's leading performing arts center.", "Logo A", "Study A" );
+	var client2 = Banner.Clients.create( "Title B", "Elgin Butler", "Text B", "Logo B", "Study B" );
 	var client2 = Banner.Clients.create( "Title C", "Image C", "Text C", "Logo C", "Study C" );
 
 /* =============================================================================
@@ -330,5 +330,16 @@
 
 	Banner.Clients.activate( Banner.Clients.content.get( "firstObject" ) );
 
-	// Banner.Container.replaceIn("#featured-work");
+	// Banner.Container.replaceIn("#featured-work"); 
+	$(document).keydown(function(e){
+		if (e.keyCode == 37 || e.keyCode == 38) { 
+			 $('a.scroll-left').click();
+			 return false;
+		}
+		if (e.keyCode == 39 || e.keyCode == 40) { 
+			$('a.scroll-right').click();
+			return false;
+			
+		}
+	});
 

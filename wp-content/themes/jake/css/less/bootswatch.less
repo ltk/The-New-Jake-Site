@@ -96,6 +96,7 @@
 #featured-work {
 	position:relative;
 	border-bottom:5px solid #D9D7D8;
+	background:@dark_gray;
 	
 	
 
@@ -143,6 +144,7 @@
 		position:relative;
 		height:@feature_banner_height;
 		overflow: hidden;
+		.box-shadow(inset 0px 1px 5px -1px #000);
 
 		li {
 			width:100%;
@@ -172,7 +174,7 @@
 			}
 
 
-			&.Title-A {
+			&.ENCORE-DESIGN {
 				background: url(/img/clients/kennedy-center/bg-med.jpg) no-repeat;
 
 				div.content {
@@ -214,14 +216,14 @@
 	
 #logos {
 	.clear-list-styles();
-	background:@dark_gray;
-	.box-shadow(inset 0px 1px 5px -1px #000);
-	list-style:none;
 	.clearfix();
 	padding:14px 0;
+	.inner();
 
 	li {
 		float:left;
+		padding:10px 40px;
+		.transition(color 0.5s);
 
 		a {
 			padding:0 12px;
