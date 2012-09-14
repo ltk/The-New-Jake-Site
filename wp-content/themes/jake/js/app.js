@@ -152,12 +152,16 @@
 
 	Banner.scrollButtonsView = Ember.View.extend({
 		tagName     : "a",
+		animation_duration : 700
 
  	});
 
 	Banner.listsView = Ember.CollectionView.extend({
 		tagName : "ul",
 		content : Banner.Clients.content,
+		elementId : function() {
+			return this.get('listItemTemplate');
+		}.property('listItemTemplate'),
 
 		itemViewClass : Ember.View.extend({
 			classNameBindings : ['this.content.active', 'this.content.name'],
@@ -165,39 +169,45 @@
 				return this.get("parentView").get("listItemTemplate");
 			}.property("this.get('parentView').listItemTemplate"),
 
-			slideLeft :  function() {
+			slideLeft :  function( duration ) {
 				var windowWidth = $(window).outerWidth();
-				var left        = parseInt( this.$().css("left") );
+				var leftOffset        = parseInt( this.$().css("left") );
 
-				this.$().css("display", "block")
-					.animate({ left : left - windowWidth }, "slow");
-					// Pass in callback functions to remove the left value/style attr?
+
+				this.$()
+					.addClass('animating')
+					.animate({ left : leftOffset - windowWidth }, duration, function(){
+						$(this).removeClass("animating").removeAttr('style');
+					});				
 			},
 
-			slideRight : function() {
+			slideRight : function( duration ) {
 				var windowWidth = $(window).outerWidth();
-				var left        = parseInt( this.$().css("left") );
+				var leftOffset        = parseInt( this.$().css("left") );
 
-				this.$().css("display", "block")
-					.animate({ left : left + windowWidth }, "slow");
+				this.$()
+					.addClass('animating')
+					.animate({ left : leftOffset + windowWidth }, duration , function(){
+						$(this).removeClass("animating").removeAttr('style');
+					});
 			},
 
 			positionLeft : function() {
 				var windowWidth = $(window).outerWidth();
 
-				this.$().css({
-					display : "block",
-					left    : -windowWidth
-				});
+				this.$()
+					.css({
+						left    : -windowWidth
+					});
 			},
 
 			positionRight : function() {
 				var windowWidth = $(window).outerWidth();
 
-				this.$().css({
-					display : "block",
-					left    : windowWidth
-				});
+				this.$()
+					.css({
+						left    : windowWidth
+					});
 			},
 
 		}),
@@ -209,7 +219,7 @@
 		elementId : "featured-work",
 
 		works : Banner.listsView.create({
-			listItemTemplate : "works"
+			listItemTemplate : "works" 
 		}),
 
 		logos : Banner.listsView.create({
@@ -221,32 +231,40 @@
 			template   : Ember.Handlebars.compile("Go to Next Slide"),
 			
 			click : function() {
+				var duration = this.get('animation_duration');
 				var outgoingView = Banner.Clients.getView( "works", "active" );
 				var incomingView = Banner.Clients.getView( "works", "next" );
+				if( ! incomingView.$().hasClass('animating') ) {
+					incomingView.positionRight( duration );
+					outgoingView.slideLeft( duration );
+					incomingView.slideLeft( duration );
 
-				incomingView.positionRight();
-				outgoingView.slideLeft();
-				incomingView.slideLeft();
-
-				Banner.Clients.activate( Banner.Clients.getNext() );
-
+					var delay = setTimeout( function() {
+						Banner.Clients.activate( Banner.Clients.getNext());
+					}, duration);
+				}
 			},
 		}),
 
 		prevButton : Banner.scrollButtonsView.create({ 
 			classNames : 'scroll-left', 
 			template   : Ember.Handlebars.compile("Go to Previous Slide"),
+
 			
 			click : function() {
+				var duration = this.get('animation_duration');
 				var outgoingView = Banner.Clients.getView( "works", "active" );
 				var incomingView = Banner.Clients.getView( "works", "prev" );
-		
-				incomingView.positionLeft();		
-				outgoingView.slideRight();
-				incomingView.slideRight();
 
-				Banner.Clients.activate( Banner.Clients.getPrev() );
+				if( ! incomingView.$().hasClass('animating') ) {
+					incomingView.positionLeft( duration );		
+					outgoingView.slideRight( duration );
+					incomingView.slideRight(duration );
 
+					var delay = setTimeout( function() {
+						Banner.Clients.activate( Banner.Clients.getPrev());
+					}, duration);
+				}
 
 			},
 		}),

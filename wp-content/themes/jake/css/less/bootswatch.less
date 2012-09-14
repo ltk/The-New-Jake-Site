@@ -38,6 +38,8 @@
 }
 
 #header {
+	background:url(/img/bg.png) repeat;
+
 	padding:20px 0;
 	.box-shadow(inset 0px -1px 3px -1px #999);
 
@@ -86,6 +88,7 @@
 
 	a.scroll-left, a.scroll-right {
 		position:absolute;
+		z-index:40;
 		.dimensions(@feature_nav_width, @feature_nav_height);
 		.hidden-text();
 		background:rgba(0,0,0,0.4) no-repeat;
@@ -122,19 +125,29 @@
 
 	
 
-	ul {
+	#works {
 		.clear-list-styles();
+		position:relative;
+		height:@feature_banner_height;
+		overflow: hidden;
 
 		li {
 			width:100%;
 			height:@feature_banner_height;
-			position:relative;
-			left:0;
+			position:absolute;
 			padding:0;
 			margin:0;
-			display:none;
+			left:0;
+			display:block;
 			background-position:center; 
-			.transition(background-image 0.7s);
+			z-index:10;
+
+			&.animating {
+				z-index:20;
+			}
+			&.active {
+				z-index:30;
+			}
 
 			&.Title-A {
 				background: url(/img/clients/kennedy-center/bg-med.jpg) no-repeat;
@@ -166,30 +179,33 @@
 				background: url(/img/clients/elgin-butler/bg-med.jpg) no-repeat;
 			}
 
-		}
-		li.active{
-			display:block;
+			&.Title-C {
+				background: url(/img/clients/westview-press/bg-med.jpg) no-repeat;
+			}
+
 		}
 	}
 }
 
-#featured-clients {
+
+	
+#logos {
+	.clear-list-styles();
 	background:@dark_gray;
 	.box-shadow(inset 0px 1px 5px -1px #000);
-	ul {
-		list-style:none;
-		.clearfix();
-		padding:14px 0;
+	list-style:none;
+	.clearfix();
+	padding:14px 0;
 
-		li {
-			float:left;
+	li {
+		float:left;
 
-			a {
-				padding:0 12px;
-			}
+		a {
+			padding:0 12px;
 		}
 	}
 }
+
 
 @media (max-width: 1014px) {
 	.inner {
