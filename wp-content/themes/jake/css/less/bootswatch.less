@@ -142,12 +142,22 @@
 			background-position:center; 
 			z-index:10;
 
+			div.content {
+				opacity: 0;
+				.transition( opacity 0.5s );	
+			}
+
 			&.animating {
 				z-index:20;
 			}
 			&.active {
 				z-index:30;
+
+				div.content {
+					opacity: 1;	
+				}
 			}
+
 
 			&.Title-A {
 				background: url(/img/clients/kennedy-center/bg-med.jpg) no-repeat;
