@@ -1,0 +1,36 @@
+{
+  "name": "ember-touch",
+  "summary": "Ember Touch",
+  "description": "The Ember touch system",
+  "homepage": "http://emberjs.com",
+  "author": "Majd Taby",
+  "version": "0.9.2",
+
+  "directories": {
+    "lib": "lib"
+  },
+
+  "dependencies": {
+    "spade"       : "~> 1.0",
+    "jquery"      : ">= 0",
+    "ember-views" : ">= 0"
+  },
+
+  "dependencies:development": {
+    "spade-qunit"      : "~> 1.0.0"
+  },
+  
+  "bpm:build": {
+    
+    "bpm_libs.js": {
+      "directories": ["lib"],
+      "modes":       "*"
+    },
+    
+    "sproutcore-touch/bpm_tests.js": {
+      "directories": ["tests"],
+      "modes": ["debug"]
+    }
+  }
+}
+
