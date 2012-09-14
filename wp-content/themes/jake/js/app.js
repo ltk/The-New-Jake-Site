@@ -173,13 +173,12 @@
 				var windowWidth = $(window).outerWidth();
 				var leftOffset        = parseInt( this.$().css("left") );
 
+
 				this.$()
 					.addClass('animating')
 					.animate({ left : leftOffset - windowWidth }, duration, function(){
 						$(this).removeClass("animating").removeAttr('style');
-					});
-					// Pass in callback functions to remove the left value/style attr?
-				
+					});				
 			},
 
 			slideRight : function( duration ) {
