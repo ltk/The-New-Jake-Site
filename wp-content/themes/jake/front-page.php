@@ -10,6 +10,7 @@
 		</script>
 
 		<script data-template-name="logos" type="text/x-handlebars">
+			<span></span>
 			<p>{{view.content.img}}</p>
 		</script>
 

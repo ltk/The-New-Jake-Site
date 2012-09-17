@@ -223,10 +223,41 @@
 	li {
 		float:left;
 		padding:10px 40px;
-		.transition(color 0.5s);
+		position:relative;
+
+		.transition( opacity 1s );
+		.transition( color 0.8s );
+		.transition( background-image 0.8s );
 
 		a {
-			padding:0 12px;
+			padding: 0 12px;
+			
+		}
+
+		span {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			opacity: 0;
+			padding:10px 40px;
+			.transition( opacity 0.5s );	
+		}
+
+		&.active span {
+			opacity: 1;
+		}
+
+		&.ENCORE-DESIGN {
+			.hidden-text;
+			background: url(/img/clients/kennedy-center/logo-white.png) no-repeat center;
+			width: 190px;
+
+			span {
+				width:190px;
+				background: url(/img/clients/kennedy-center/logo-color.png) no-repeat center;
+			}
 		}
 	}
 }
