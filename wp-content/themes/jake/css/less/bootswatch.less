@@ -83,6 +83,9 @@
 	}
 }
 
+#header nav.primary-nav ul li a
+.primary-nav a
+
 #logo-highlight {
 	.hidden-text;
 	height: 5px;
@@ -159,7 +162,7 @@
 
 			div.content {
 				opacity: 0;
-				.transition( opacity 0.5s );	
+				.transition( opacity 0.8s);	
 			}
 
 			&.animating {
@@ -171,6 +174,10 @@
 				div.content {
 					opacity: 1;	
 				}
+			}
+
+			h1, p {
+				color:@white;
 			}
 
 
@@ -249,7 +256,7 @@
 			opacity: 1;
 		}
 
-		&.ENCORE-DESIGN {
+		//&.ENCORE-DESIGN {
 			.hidden-text;
 			background: url(/img/clients/kennedy-center/logo-white.png) no-repeat center;
 			width: 190px;
@@ -258,7 +265,7 @@
 				width:190px;
 				background: url(/img/clients/kennedy-center/logo-color.png) no-repeat center;
 			}
-		}
+		//}
 	}
 }
 
@@ -268,6 +275,20 @@
 		width: 100%;
 		margin:0;
 		padding:0 5px;
+	}
+}
+@media (max-width: 979px ) and ( min-width: 768px ) {
+// @media (max-width: 1014px) and (min-width: 651px){
+// #featured-work #works li.ENCORE-DESIGN {
+// 	background-image: url(/img/clients/kennedy-center/bg-1024.jpg);
+// }
+	#featured-work {
+		#works {
+			li.ENCORE-DESIGN {
+				background-image: url(/img/clients/kennedy-center/bg-1024.jpg);
+				// color: blue;
+			}
+		}
 	}
 }
 
@@ -300,4 +321,5 @@
 			}
 		}
 	}
+
 }
