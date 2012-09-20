@@ -1,218 +1,267 @@
-//Some quick vars
+/* =============================================================================
+   Less -- Vars, Mixins & Utility Classes
+   ========================================================================== */
+
 @feature_banner_height: 507px;
 @feature_nav_height: 60px;
 @feature_nav_width: 50px;
 
-@jake_green: #9ccc50;
-@jake_blue: #003768;
-@dark_gray: #444343;
+@jake-green: #9ccc50;
+@jake-blue: #003768;
+@dark-gray: #444343;
+
+@sans-medium: 'Novecento W00 Medium', Helvetica, Arial, sans-serif;
 
 
 .active { color: #9ccc50; }
 
 .inner {
-	width:@gridRowWidth;
-	margin:0 auto;
+	width: @gridRowWidth;
+	margin: 0 auto;
 }
 
 .hidden-text {
-	display:block;
-	text-indent:-10000px;
-}
-.clear-list-styles() {
-	margin:0;
-	padding:0;
-	list-style:none;
+	display: block;
+	text-indent: -10000px;
 }
 
-.dimensions(@width, @height) {
-	width:@width;
-	height:@height;
+.clear-list-styles {
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
-#brand {
-	.dimensions(200px, 45px);
-	.hidden-text;
-	background:url(/img/jake-logo.png) no-repeat;
-	.pull-left();
+.dimensions( @width, @height ) {
+	width: @width;
+	height: @height;
 }
+
+
+/* =============================================================================
+   Base
+   ========================================================================== */
+
+
+/* =============================================================================
+   Layout
+   ========================================================================== */
 
 #header {
-	background:url(/img/bg.png) repeat;
+	padding: 20px 0;
 
-	padding:20px 0;
-	.box-shadow(inset 0px -1px 3px -1px #999);
-
-	nav.primary-nav {
-		.pull-right();
-
-		ul {
-			.clear-list-styles();
-			.clearfix();
-			margin-top:10px;
-			margin-right:-11px;
-	
-			li {
-				float:left;
-
-				a {
-					padding:11px 22px;
-					font-size:16px; //make var
-					//font-family:'Novecento W00 Normal'; //make var
-					font-family:'Novecento W00 Medium'; //make var
-					.transition( color .25s );
-
-					color:#666; //make var
-
-					&:hover {
-						color:@jake_green;
-						text-decoration:none;
-					}
-
-					&:active {
-						.transition( color 0.15s );						
-						color:@jake_blue;
-					}
-				}
-
-				&.active a {
-					color:@jake_blue;
-				}
-			}
-		}
-	}
+	.box-shadow( inset 0px -1px 3px -1px #999 );
+	background: url( /img/bg.png ) repeat;
 }
 
-#header nav.primary-nav ul li a
-.primary-nav a
+
+/* =============================================================================
+   Components
+   ========================================================================== */
+
+#logo {
+	.dimensions( 200px, 45px );
+	
+	.pull-left;
+	
+	.hidden-text;
+	background: url( /img/jake-logo.png ) no-repeat;
+}
+
+/*
+<nav class="primary-nav pull-right" role="navigation">
+	<ul id="menu-primary-navigation" class="menu horizontal-list">
+		<li class="menu-about"><a href="/about/">About</a></li>
+		<li class="menu-work"><a href="/work/">Work</a></li>
+		<li class="menu-blog"><a href="http://jakeintel.thejakegroup.com">Blog</a></li>
+		<li class="menu-contact"><a href="/contact/">Contact</a></li>
+	</ul>
+</nav>
+*/
+.horizontal-list {
+	.clearfix;
+	.clear-list-styles;
+
+	li { .pull-left; }
+}
+
+#menu-primary-navigation {
+
+	a {
+		padding: 11px 22px;
+		
+		font-size: 16px; //make var
+		font-family: @sans-medium;
+		color: #666;
+		.transition( color .25s );
+
+		&:hover {
+			color: @jake-green;
+			text-decoration: none;
+		}
+
+		&:active {
+			color: @jake-blue;
+			.transition( color .15s );						
+		}
+	}
+
+	.active a {
+		color: @jake-blue;
+	}
+}
+	
+
+
+ul { 		margin-top: 10px;
+		margin-right: -11px;
+}
+/* =============================================================================
+   Undone
+   ========================================================================== */
+
+
 
 #logo-highlight {
-	.hidden-text;
-	height: 5px;
-	position: absolute;
-	bottom:-5px;
-	width: 100px;
 	display: block;
-	background: @jake_green;
+	height: 5px;
+	width: 100px;
+	
+	position: absolute;
+	bottom: -5px;
+	
+	.hidden-text;
+	background: @jake-green;
 }
 
 #featured-work {
-	position:relative;
-	border-bottom:5px solid #D9D7D8;
-	background:@dark_gray;
+	position: relative;
 	
+	border-bottom: 5px solid #D9D7D8;
+	background: @dark-gray;
 	
+	a.scroll-left, 
+	a.scroll-right {
+		width: @feature_nav_width;
+		height: @feature_nav_height;
 
-	a.scroll-left, a.scroll-right {
-		position:absolute;
-		z-index:40;
-		.dimensions(@feature_nav_width, @feature_nav_height);
+		position: absolute;
+		top: ( @feature_banner_height / 2 ) - ( @feature_nav_height / 2 );
+		z-index: 40;
+		
 		.hidden-text;
-		background:rgba(0,0,0,0.4) no-repeat;
-		background-position:center center;
-		top:(@feature_banner_height / 2) - (@feature_nav_height / 2);
 		opacity:0;
-		.transition(opacity 0.3s);
-
+		background:rgba( 0, 0, 0, .4 ) no-repeat;
+		background-position: center center;
+		.transition( opacity .3s );
 	}
 
-	&:hover a.scroll-left, &:hover a.scroll-right {
-		opacity:0.5;
+	&:hover a.scroll-left,
+	&:hover a.scroll-right { 
+		opacity: .5;
 	}
 
 	a.scroll-left {
-		left:0;
-		.border-radius(0 3px 3px 0);
-		background-image:url(/img/scroll-left.png);
+		left: 0;
+		
+		.border-radius( 0 3px 3px 0 );
+		background-image: url( /img/scroll-left.png );
 
 		&:hover {
-			opacity:1;
+			opacity: 1;
 		}
 	}
 
 	a.scroll-right {
-		right:0;
-		.border-radius(3px 0 0 3px);
-		background-image:url(/img/scroll-right.png);
+		right: 0;
+		
+		.border-radius( 3px 0 0 3px );
+		background-image: url( /img/scroll-right.png );
 
 		&:hover {
-			opacity:1;
+			opacity: 1;
 		}
 	}
 
-	
-
 	#works {
-		.clear-list-styles();
-		position:relative;
-		height:@feature_banner_height;
+		height: @feature_banner_height;
+
+		position: relative;
+		
 		overflow: hidden;
-		.box-shadow(inset 0px 1px 5px -1px #000);
+		.clear-list-styles;
+		.box-shadow( inset 0px 1px 5px -1px #000 );
 
 		li {
-			width:100%;
-			height:@feature_banner_height;
-			position:absolute;
-			padding:0;
-			margin:0;
-			left:0;
-			display:block;
-			background-position:center; 
-			z-index:10;
+			display: block;
+			width: 100%;
+			height: @feature_banner_height;
+			padding: 0;
+			
+			position: absolute;
+			z-index: 10;
+			left: 0;
+
+			background-position: center; 
+			
+			margin: 0;
 
 			div.content {
 				opacity: 0;
-				.transition( opacity 0.8s);	
+				.transition( opacity .8s );	
 			}
 
 			&.animating {
-				z-index:20;
+				z-index: 20;
 			}
 			&.active {
-				z-index:30;
+				z-index: 30;
 
 				div.content {
 					opacity: 1;	
 				}
 			}
 
-			h1, p {
-				color:@white;
+			h1, 
+			p {
+				color: @white;
 			}
 
 
 			&.ENCORE-DESIGN {
-				background: url(/img/clients/kennedy-center/bg-med.jpg) no-repeat;
+				background: url( /img/clients/kennedy-center/bg-med.jpg ) no-repeat;
 
 				div.content {
-					width:500px;
-					.pull-right();
+					width: 500px;
+					.pull-right;
 
 					h1 {
-						font-weight:normal;
-						font-size:49px;
-						color:@white;
-						text-align:right;
-						line-height:1.6em;
-						margin-top:36px;
+						font-weight: normal;
+						font-size: 49px;
+						color: @white;
+						text-align: right;
+						line-height: 1.6em;
+						
+						margin-top: 36px;
 					}
 
 					p {
-						.pull-right();
-						width:325px;
-						color:@white;
-						text-align:left;
+						width: 325px;
+						
+						.pull-right;
+						
+						color: @white;
+						text-align: left;
 					}
 				}
 				
 			}
 
 			&.Title-B {
-				background: url(/img/clients/elgin-butler/bg-med.jpg) no-repeat;
+				background: url( /img/clients/elgin-butler/bg-med.jpg ) no-repeat;
 			}
 
 			&.Title-C {
-				background: url(/img/clients/westview-press/bg-med.jpg) no-repeat;
+				background: url( /img/clients/westview-press/bg-med.jpg ) no-repeat;
 			}
 
 		}
@@ -222,19 +271,19 @@
 
 	
 #logos {
-	.clear-list-styles();
-	.clearfix();
-	padding:14px 0;
-	.inner();
+	.clear-list-styles;
+	.clearfix;
+	padding: 14px 0;
+	.inner;
 
 	li {
-		float:left;
-		padding:10px 40px;
-		position:relative;
+		float: left;
+		padding: 10px 40px;
+		position: relative;
 
 		.transition( opacity 1s );
-		.transition( color 0.8s );
-		.transition( background-image 0.8s );
+		.transition( color .8s );
+		.transition( background-image .8s );
 
 		a {
 			padding: 0 12px;
@@ -248,8 +297,8 @@
 			bottom: 0;
 			right: 0;
 			opacity: 0;
-			padding:10px 40px;
-			.transition( opacity 0.5s );	
+			padding: 10px 40px;
+			.transition( opacity .5s );	
 		}
 
 		&.active span {
@@ -258,26 +307,27 @@
 
 		//&.ENCORE-DESIGN {
 			.hidden-text;
-			background: url(/img/clients/kennedy-center/logo-white.png) no-repeat center;
+			background: url( /img/clients/kennedy-center/logo-white.png)  no-repeat center;
 			width: 190px;
 
 			span {
-				width:190px;
-				background: url(/img/clients/kennedy-center/logo-color.png) no-repeat center;
+				width: 190px;
+				background: url( /img/clients/kennedy-center/logo-color.png ) no-repeat center;
 			}
 		//}
 	}
 }
 
 
-@media (max-width: 1014px) {
+@media ( max-width: 1014px ) {
 	.inner {
 		width: 100%;
-		margin:0;
-		padding:0 5px;
+		padding: 0 5px;
+		
+		margin: 0;
 	}
 }
-@media (max-width: 979px ) and ( min-width: 768px ) {
+@media ( max-width: 979px ) and ( min-width: 768px ) {
 // @media (max-width: 1014px) and (min-width: 651px){
 // #featured-work #works li.ENCORE-DESIGN {
 // 	background-image: url(/img/clients/kennedy-center/bg-1024.jpg);
@@ -285,37 +335,44 @@
 	#featured-work {
 		#works {
 			li.ENCORE-DESIGN {
-				background-image: url(/img/clients/kennedy-center/bg-1024.jpg);
+				background-image: url( /img/clients/kennedy-center/bg-1024.jpg );
 				// color: blue;
 			}
 		}
 	}
 }
 
-@media (max-width: 650px) {
+@media ( max-width: 650px ) {
 	#brand {
-		margin:0 auto 20px;
-		float:none;
-		background-image:url(/img/jake-logo-small.png);
-		width:150px;
-		height:34px;
+		height: 34px;
+		width: 150px;
+
+		float: none;
+		
+		background-image: url( /img/jake-logo-small.png );
+		
+		margin: 0 auto 20px;
 	}
 	#header {
 		nav.primary-nav {
-			float:none;
-			width:100%;
+			width: 100%;
+			
+			float: none;
 
 			ul {
-				width:100%;
-				margin:0;
+				width: 100%;
+				
+				margin: 0;
+
 				li {
-					width:25%;
+					width: 25%;
 					a {
-						display:inline-block;
-						padding:0;
-						width:100%;
-						text-align:center;
-						.box-sizing(border-box);
+						display: inline-block;
+						.box-sizing( border-box );
+						width: 100%;
+						padding: 0;
+						
+						text-align: center;
 					}
 				}
 			}

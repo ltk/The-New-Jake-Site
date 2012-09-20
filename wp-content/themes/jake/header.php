@@ -41,7 +41,7 @@
   <?php roots_header_before(); ?>
   <header id="header" role="document">
     <div class="inner clearfix">
-      <a id="brand" href="<?php echo get_home_url(); ?>" title="<?php bloginfo('name'); ?> | Home">The Jake Group</a>
+      <a id="logo" href="<?php echo get_home_url(); ?>" title="<?php bloginfo('name'); ?> | Home">The Jake Group</a>
       <?php get_template_part('templates/nav', 'primary'); ?>
     </div>
 
