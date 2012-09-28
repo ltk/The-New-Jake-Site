@@ -321,6 +321,10 @@
 			tagName   : 'span',
 			elementId : 'logo-highlight',
 			template  : Ember.Handlebars.compile("Now Showing"),
+
+			didInsertElement : function() {
+				this.slide( Banner.Clients._getActiveView( "logos" ), 0 );
+			},
 			
 			slide : function( incoming, duration ) {
 				var newPosition = incoming.$().position().left;
@@ -330,7 +334,7 @@
 					.animate({
 						left  : newPosition,
 						width : newWidth
-					});
+					}, duration);
 			}
 		}),
 
@@ -374,6 +378,11 @@
 
 
 	Banner.Clients.activate( Banner.Clients.content.get( "firstObject" ) );
+
+	$(function() {
+		
+	});
+
 
 	// Banner.Container.replaceIn("#featured-work"); 
 	$(document).keydown(function(e){
