@@ -163,6 +163,16 @@
 			return views[ index ];
 		},
 
+		isActiveView : function( view ) {
+			var client = this._getClientFromView( view );
+			if ( client.get( "active" ) ) {
+				return true;
+			} else {
+				return false;
+			}
+
+		},
+
 		handleClick : function ( view, direction ) {
 			var controller = this;
 			var duration = view.get('animation_duration');
@@ -312,7 +322,9 @@
 				templateName : "logos",
 
 				click : function() {
-					Banner.Clients.handleClick( this, 'arbitrary' );
+					if ( ! Banner.Clients.isActiveView( this ) ) {
+						Banner.Clients.handleClick( this, 'arbitrary' );
+					}
 				}
 			}),
 		}),
