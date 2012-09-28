@@ -192,7 +192,7 @@ ul { 		margin-top: 10px;
 		.box-shadow( inset 0px 1px 5px -1px #000 );
 
 		li {
-			display: block;
+			display: none;
 			width: 100%;
 			height: @feature_banner_height;
 			padding: 0;
@@ -212,9 +212,11 @@ ul { 		margin-top: 10px;
 
 			&.animating {
 				z-index: 20;
+				display: block;
 			}
 			&.active {
 				z-index: 30;
+				display: block;
 
 				div.content {
 					opacity: 1;	
